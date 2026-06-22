@@ -1,0 +1,21 @@
+# Archivos compilados de Java (Bytecode)
+*.class
+
+# Archivos de empaquetado
+*.war
+*.ear
+*.jar
+
+# Carpetas y archivos de herramientas/IDEs
+.settings/
+.project
+.classpath
+.factorypath
+.vscode/
+.idea/
+*.iml
+*.iws
+
+# Archivos temporales del sistema operativo
+.DS_Store
+Thumbs.db
