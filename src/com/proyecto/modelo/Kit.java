@@ -1,3 +1,5 @@
+package com.proyecto.modelo;
+
 import java.util.ArrayList;
 
 public class Kit {
@@ -9,8 +11,10 @@ public class Kit {
     private int disponibles;
     private ArrayList<Partido> partidos;
 
-    public Kit(String codigo, String nombre, String descripcion, double precio, int disponibles, ArrayList<Partido> partidos) {
-        
+    //Constructor del método Kit
+    public Kit(String codigo, String nombre, String descripcion, double precio, int disponibles,
+            ArrayList<Partido> partidos) {
+
         this.codigo = codigo;
         this.nombre = nombre;
         this.descripcion = descripcion;
@@ -26,6 +30,7 @@ public class Kit {
     public String getCodigo() {
         return codigo;
     }
+
     public void setCodigo(String codigo) {
         this.codigo = codigo;
     }
@@ -33,6 +38,7 @@ public class Kit {
     public String getNombre() {
         return nombre;
     }
+
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
@@ -40,6 +46,7 @@ public class Kit {
     public String getDescripcion() {
         return descripcion;
     }
+
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
@@ -47,6 +54,7 @@ public class Kit {
     public double getPrecio() {
         return precio;
     }
+
     public void setPrecio(double precio) {
         this.precio = precio;
     }
@@ -54,6 +62,7 @@ public class Kit {
     public int getDisponibles() {
         return disponibles;
     }
+
     public void setDisponibles(int disponibles) {
         this.disponibles = disponibles;
     }
@@ -61,6 +70,7 @@ public class Kit {
     public ArrayList<Partido> getPartidos() {
         return partidos;
     }
+
     public void setPartidos(ArrayList<Partido> partidos) {
         this.partidos = partidos;
     }
