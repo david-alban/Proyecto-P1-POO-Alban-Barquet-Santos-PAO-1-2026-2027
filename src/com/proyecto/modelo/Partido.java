@@ -1,3 +1,4 @@
+package com.proyecto.modelo;
 
 import java.util.Date;
 
@@ -14,9 +15,10 @@ public class Partido {
     private int StockPreferencial;
     private int StockVIP;
     private String fase;
-    
-    public Partido(String codigo, String local, String visitante, Date fecha, String estadio, String ciudad, int capacidad, int stockGeneral, int StockPreferencial, int StockVIP, String fase) {
-       
+
+    // Constructor del método Partido
+    public Partido(String codigo, String local, String visitante, Date fecha, String estadio, String ciudad,
+            int capacidad, int stockGeneral, int StockPreferencial, int StockVIP, String fase) {
         this.codigo = codigo;
         this.local = local;
         this.visitante = visitante;
@@ -30,9 +32,11 @@ public class Partido {
         this.fase = fase;
     }
 
+    // Getters/Setters
     public String getCodigo() {
         return codigo;
     }
+
     public void setCodigo(String codigo) {
         this.codigo = codigo;
     }
@@ -40,6 +44,7 @@ public class Partido {
     public String getLocal() {
         return local;
     }
+
     public void setLocal(String local) {
         this.local = local;
     }
@@ -47,62 +52,71 @@ public class Partido {
     public String getVisitante() {
         return visitante;
     }
+
     public void setVisitante(String visitante) {
         this.visitante = visitante;
     }
-    
+
     public Date getFecha() {
         return fecha;
     }
+
     public void setFecha(Date fecha) {
         this.fecha = fecha;
     }
-   
+
     public String getEstadio() {
         return estadio;
     }
+
     public void setEstadio(String estadio) {
         this.estadio = estadio;
     }
-    
+
     public String getCiudad() {
         return ciudad;
     }
+
     public void setCiudad(String ciudad) {
         this.ciudad = ciudad;
     }
-    
+
     public int getCapacidad() {
         return capacidad;
     }
+
     public void setCapacidad(int capacidad) {
         this.capacidad = capacidad;
     }
-    
+
     public int getStockGeneral() {
         return stockGeneral;
     }
+
     public void setStockGeneral(int stockGeneral) {
         this.stockGeneral = stockGeneral;
     }
-    
+
     public int getStockPreferencial() {
         return StockPreferencial;
     }
+
     public void setStockPreferencial(int StockPreferencial) {
         this.StockPreferencial = StockPreferencial;
     }
-    
+
     public int getStockVIP() {
         return StockVIP;
     }
+
     public void setStockVIP(int StockVIP) {
         this.StockVIP = StockVIP;
     }
-    
+
     public String getFase() {
         return fase;
     }
+
     public void setFase(String fase) {
         this.fase = fase;
     }
