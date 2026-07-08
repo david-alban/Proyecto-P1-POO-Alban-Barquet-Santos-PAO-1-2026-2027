@@ -11,6 +11,13 @@ public class Sistema {
 
     // Constructor del método Sistema
 
+    public Sistema(){
+        this.usuarios = new ArrayList<>();
+        this.compras = new ArrayList<>();
+        this.kits = new ArrayList<>();
+        this.partidos = new ArrayList<>();
+    }
+
     public ArrayList<Usuario> getUsuarios() {
         return usuarios;
     }
