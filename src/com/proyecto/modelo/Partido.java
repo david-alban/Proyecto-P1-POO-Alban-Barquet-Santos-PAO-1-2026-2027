@@ -15,6 +15,9 @@ public class Partido {
     private int StockPreferencial;
     private int StockVIP;
     private String fase;
+    private static final double precioBaseGeneral = 45.00;
+    private static final double precioBasePreferencial = 85.00;
+    private static final double precioBaseVIP = 150.00;
 
     // Constructor del método Partido
     public Partido(String codigo, String local, String visitante, Date fecha, String estadio, String ciudad,
@@ -63,6 +66,12 @@ public class Partido {
     public int getStockVIP() {return StockVIP;}
     public void setStockVIP(int StockVIP) {this.StockVIP = StockVIP;}
 
-    public String getFase() {return fase;}
-    public void setFase(String fase) {this.fase = fase;}
+    public String getFase() {
+        return fase;
+    }
+
+    public void setFase(String fase) {
+        this.fase = fase;
+    }
+
 }

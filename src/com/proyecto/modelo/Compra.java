@@ -25,6 +25,7 @@ public class Compra {
         nextCodigo++;
     }
 
+    // Getters/Setters
     public int getCodigoCompra() {
         return codigoCompra;
     }

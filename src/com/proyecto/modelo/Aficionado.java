@@ -5,7 +5,7 @@ public class Aficionado extends Usuario {
     private String celular;
     private String paisFavorito;
 
-    //Constructor del método Aficionado 
+    // Constructor del método Aficionado 
     public Aficionado(String codigoUnico, String cedula, String nombres, String apellidos, String usuario,
             String contraseña, String correo, Rol rol, String celular, String paisFavorito) {
         super(codigoUnico, cedula, nombres, apellidos, usuario, contraseña, correo, rol);
@@ -13,6 +13,7 @@ public class Aficionado extends Usuario {
         this.paisFavorito = paisFavorito;
     }
 
+    // Sobreescritura del método consultarEntradas
     @Override
     public void consultarEntradas() {
 
