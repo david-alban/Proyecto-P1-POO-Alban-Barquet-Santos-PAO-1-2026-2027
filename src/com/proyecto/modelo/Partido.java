@@ -15,6 +15,9 @@ public class Partido {
     private int StockPreferencial;
     private int StockVIP;
     private String fase;
+    private static final double precioBaseGeneral = 45.00;
+    private static final double precioBasePreferencial = 85.00;
+    private static final double precioBaseVIP = 150.00;
 
     // Constructor del método Partido
     public Partido(String codigo, String local, String visitante, Date fecha, String estadio, String ciudad,
@@ -121,4 +124,48 @@ public class Partido {
         this.fase = fase;
     }
 
+    // Método obtenerPrecio
+    public double obtenerPrecio(double precioBase, String fase) {
+        switch (fase) {
+            case "Fase de grupos":
+                return precioBase;
+
+            case "Octavos de final":
+                return precioBase + 15;
+
+            case "Cuartos de final":
+                return precioBase + 30;
+
+            case "Semifinal":
+                return precioBase + 60;
+
+            case "Tercer lugar":
+                return precioBase + 75;
+
+            case "Final":
+                return precioBase + 90;
+
+            default:
+                return precioBase;
+        }
+    }
+
+    // Sobreescritura del método toString
+    @Override
+    public String toString() {
+        String formato1 = "Código: " + codigo + "\n" + "Partido: " + local + " vs " + visitante + "\n";
+        String formato2 = "Fecha: " + fecha + "\n" + "Estadio: " + estadio + "\n" + "Ciudad: " + ciudad + "\n"
+                + "Fase: " + fase + "\n";
+        String formato3 = "\n" + "Zonas disponibles: \n";
+        String formato4 = String.format("- %-13s | Disponibles: %-6d | Precio: $%.2f\n",
+                "GENERAL", stockGeneral, obtenerPrecio(precioBaseGeneral, fase));
+
+        String formato5 = String.format("- %-13s | Disponibles: %-6d | Precio: $%.2f\n",
+                "PREFERENCIAL", StockPreferencial, obtenerPrecio(precioBasePreferencial, fase));
+
+        String formato6 = String.format("- %-13s | Disponibles: %-6d | Precio: $%.2f\n",
+                "VIP", StockVIP, obtenerPrecio(precioBaseVIP, fase));
+
+        return formato1 + formato2 + formato3 + formato4 + formato5 + formato6;
+    }
 }

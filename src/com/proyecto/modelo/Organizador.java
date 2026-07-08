@@ -5,7 +5,7 @@ public class Organizador extends Usuario {
     private String empresa;
     private String cargo;
 
-    // Constructor del método Organizador 
+    //Constructor del método Organizador 
     public Organizador(String codigoUnico, String cedula, String nombres, String apellidos, String usuario,
             String contraseña, String correo, Rol rol, String empresa, String cargo) {
         super(codigoUnico, cedula, nombres, apellidos, usuario, contraseña, correo, rol);
@@ -13,13 +13,13 @@ public class Organizador extends Usuario {
         this.cargo = cargo;
     }
 
-    // Sobreescritura del método consultarEntradas
+    //Sobreescritura del método consultarEntradas
     @Override
     public void consultarEntradas() {
 
     }
 
-    // Getters/Setters
+    //Getters/Setters
     public String getEmpresa() {
         return empresa;
     }
