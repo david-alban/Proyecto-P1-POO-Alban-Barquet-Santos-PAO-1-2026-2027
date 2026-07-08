@@ -36,85 +36,35 @@ public class Partido {
     }
 
     // Getters/Setters
-    public String getCodigo() {
-        return codigo;
-    }
+    public String getCodigo() {return codigo;}
+    public void setCodigo(String codigo) {this.codigo = codigo;}
 
-    public void setCodigo(String codigo) {
-        this.codigo = codigo;
-    }
+    public String getLocal() {return local;}
+    public void setLocal(String local) {this.local = local;}
 
-    public String getLocal() {
-        return local;
-    }
+    public String getVisitante() {return visitante;}
+    public void setVisitante(String visitante) {this.visitante = visitante;}
 
-    public void setLocal(String local) {
-        this.local = local;
-    }
+    public Date getFecha() {return fecha;}
+    public void setFecha(Date fecha) {this.fecha = fecha;}
 
-    public String getVisitante() {
-        return visitante;
-    }
+    public String getEstadio() {return estadio;}
+    public void setEstadio(String estadio) {this.estadio = estadio;}
 
-    public void setVisitante(String visitante) {
-        this.visitante = visitante;
-    }
+    public String getCiudad() {return ciudad;}
+    public void setCiudad(String ciudad) {this.ciudad = ciudad;}
 
-    public Date getFecha() {
-        return fecha;
-    }
+    public int getCapacidad() {return capacidad;}
+    public void setCapacidad(int capacidad) {this.capacidad = capacidad;}
 
-    public void setFecha(Date fecha) {
-        this.fecha = fecha;
-    }
+    public int getStockGeneral() {return stockGeneral;}
+    public void setStockGeneral(int stockGeneral) {this.stockGeneral = stockGeneral;}
 
-    public String getEstadio() {
-        return estadio;
-    }
+    public int getStockPreferencial() {return StockPreferencial;}
+    public void setStockPreferencial(int StockPreferencial) {this.StockPreferencial = StockPreferencial;}
 
-    public void setEstadio(String estadio) {
-        this.estadio = estadio;
-    }
-
-    public String getCiudad() {
-        return ciudad;
-    }
-
-    public void setCiudad(String ciudad) {
-        this.ciudad = ciudad;
-    }
-
-    public int getCapacidad() {
-        return capacidad;
-    }
-
-    public void setCapacidad(int capacidad) {
-        this.capacidad = capacidad;
-    }
-
-    public int getStockGeneral() {
-        return stockGeneral;
-    }
-
-    public void setStockGeneral(int stockGeneral) {
-        this.stockGeneral = stockGeneral;
-    }
-
-    public int getStockPreferencial() {
-        return StockPreferencial;
-    }
-
-    public void setStockPreferencial(int StockPreferencial) {
-        this.StockPreferencial = StockPreferencial;
-    }
-
-    public int getStockVIP() {
-        return StockVIP;
-    }
-
-    public void setStockVIP(int StockVIP) {
-        this.StockVIP = StockVIP;
-    }
+    public int getStockVIP() {return StockVIP;}
+    public void setStockVIP(int StockVIP) {this.StockVIP = StockVIP;}
 
     public String getFase() {
         return fase;
@@ -124,48 +74,4 @@ public class Partido {
         this.fase = fase;
     }
 
-    // Método obtenerPrecio
-    public double obtenerPrecio(double precioBase, String fase) {
-        switch (fase) {
-            case "Fase de grupos":
-                return precioBase;
-
-            case "Octavos de final":
-                return precioBase + 15;
-
-            case "Cuartos de final":
-                return precioBase + 30;
-
-            case "Semifinal":
-                return precioBase + 60;
-
-            case "Tercer lugar":
-                return precioBase + 75;
-
-            case "Final":
-                return precioBase + 90;
-
-            default:
-                return precioBase;
-        }
-    }
-
-    // Sobreescritura del método toString
-    @Override
-    public String toString() {
-        String formato1 = "Código: " + codigo + "\n" + "Partido: " + local + " vs " + visitante + "\n";
-        String formato2 = "Fecha: " + fecha + "\n" + "Estadio: " + estadio + "\n" + "Ciudad: " + ciudad + "\n"
-                + "Fase: " + fase + "\n";
-        String formato3 = "\n" + "Zonas disponibles: \n";
-        String formato4 = String.format("- %-13s | Disponibles: %-6d | Precio: $%.2f\n",
-                "GENERAL", stockGeneral, obtenerPrecio(precioBaseGeneral, fase));
-
-        String formato5 = String.format("- %-13s | Disponibles: %-6d | Precio: $%.2f\n",
-                "PREFERENCIAL", StockPreferencial, obtenerPrecio(precioBasePreferencial, fase));
-
-        String formato6 = String.format("- %-13s | Disponibles: %-6d | Precio: $%.2f\n",
-                "VIP", StockVIP, obtenerPrecio(precioBaseVIP, fase));
-
-        return formato1 + formato2 + formato3 + formato4 + formato5 + formato6;
-    }
 }
