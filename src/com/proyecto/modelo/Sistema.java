@@ -10,6 +10,7 @@ public class Sistema {
     private ArrayList<Compra> compras;
 
     // Constructor del método Sistema
+
     public ArrayList<Usuario> getUsuarios() {
         return usuarios;
     }
@@ -41,4 +42,27 @@ public class Sistema {
     public void setCompras(ArrayList<Compra> compras) {
         this.compras = compras;
     }
+
+    // Método consultar partidos
+    public void consultarPartidos() {
+        if (partidos.isEmpty()) {
+            System.out.println("No hay partidos registrados en el sistema.");
+            return;
+        }
+
+        System.out.println("=========================================");
+        System.out.println("          PARTIDOS ENCONTRADOS           ");
+        System.out.println("=========================================\n");
+
+        int i = 1;
+        for (Partido partido : partidos) {
+            if (partido != null) {
+                System.out.print(i + ". ");
+                System.out.println(partido);
+                System.out.println("\n-----------------------------------------\n");
+                i++;
+            }
+        }
+    }
+
 }
