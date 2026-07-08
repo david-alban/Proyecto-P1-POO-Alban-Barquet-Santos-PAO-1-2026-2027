@@ -66,12 +66,7 @@ public class Partido {
     public int getStockVIP() {return StockVIP;}
     public void setStockVIP(int StockVIP) {this.StockVIP = StockVIP;}
 
-    public String getFase() {
-        return fase;
-    }
-
-    public void setFase(String fase) {
-        this.fase = fase;
-    }
+    public String getFase() {return fase;}
+    public void setFase(String fase) {this.fase = fase;}
 
 }
