@@ -33,92 +33,36 @@ public class Partido {
     }
 
     // Getters/Setters
-    public String getCodigo() {
-        return codigo;
-    }
+    public String getCodigo() {return codigo;}
+    public void setCodigo(String codigo) {this.codigo = codigo;}
 
-    public void setCodigo(String codigo) {
-        this.codigo = codigo;
-    }
+    public String getLocal() {return local;}
+    public void setLocal(String local) {this.local = local;}
 
-    public String getLocal() {
-        return local;
-    }
+    public String getVisitante() {return visitante;}
+    public void setVisitante(String visitante) {this.visitante = visitante;}
 
-    public void setLocal(String local) {
-        this.local = local;
-    }
+    public Date getFecha() {return fecha;}
+    public void setFecha(Date fecha) {this.fecha = fecha;}
 
-    public String getVisitante() {
-        return visitante;
-    }
+    public String getEstadio() {return estadio;}
+    public void setEstadio(String estadio) {this.estadio = estadio;}
 
-    public void setVisitante(String visitante) {
-        this.visitante = visitante;
-    }
+    public String getCiudad() {return ciudad;}
+    public void setCiudad(String ciudad) {this.ciudad = ciudad;}
 
-    public Date getFecha() {
-        return fecha;
-    }
+    public int getCapacidad() {return capacidad;}
+    public void setCapacidad(int capacidad) {this.capacidad = capacidad;}
 
-    public void setFecha(Date fecha) {
-        this.fecha = fecha;
-    }
+    public int getStockGeneral() {return stockGeneral;}
+    public void setStockGeneral(int stockGeneral) {this.stockGeneral = stockGeneral;}
 
-    public String getEstadio() {
-        return estadio;
-    }
+    public int getStockPreferencial() {return StockPreferencial;}
+    public void setStockPreferencial(int StockPreferencial) {this.StockPreferencial = StockPreferencial;}
 
-    public void setEstadio(String estadio) {
-        this.estadio = estadio;
-    }
+    public int getStockVIP() {return StockVIP;}
+    public void setStockVIP(int StockVIP) {this.StockVIP = StockVIP;}
 
-    public String getCiudad() {
-        return ciudad;
-    }
-
-    public void setCiudad(String ciudad) {
-        this.ciudad = ciudad;
-    }
-
-    public int getCapacidad() {
-        return capacidad;
-    }
-
-    public void setCapacidad(int capacidad) {
-        this.capacidad = capacidad;
-    }
-
-    public int getStockGeneral() {
-        return stockGeneral;
-    }
-
-    public void setStockGeneral(int stockGeneral) {
-        this.stockGeneral = stockGeneral;
-    }
-
-    public int getStockPreferencial() {
-        return StockPreferencial;
-    }
-
-    public void setStockPreferencial(int StockPreferencial) {
-        this.StockPreferencial = StockPreferencial;
-    }
-
-    public int getStockVIP() {
-        return StockVIP;
-    }
-
-    public void setStockVIP(int StockVIP) {
-        this.StockVIP = StockVIP;
-    }
-
-    public String getFase() {
-        return fase;
-    }
-
-    public void setFase(String fase) {
-        this.fase = fase;
-    }
-
+    public String getFase() {return fase;}
+    public void setFase(String fase) {this.fase = fase;}
 }
