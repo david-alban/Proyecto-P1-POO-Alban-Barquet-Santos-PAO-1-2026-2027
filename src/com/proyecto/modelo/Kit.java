@@ -26,53 +26,23 @@ public class Kit {
     public void agregarPartido(Partido p) {
         this.partidos.add(p);
     }
+    
+    public String getCodigo() {return codigo;}
+    public void setCodigo(String codigo) {this.codigo = codigo;}
 
-    public String getCodigo() {
-        return codigo;
-    }
+    public String getNombre() {return nombre;}
+    public void setNombre(String nombre) {this.nombre = nombre;}
 
-    public void setCodigo(String codigo) {
-        this.codigo = codigo;
-    }
+    public String getDescripcion() {return descripcion;}
+    public void setDescripcion(String descripcion) {this.descripcion = descripcion;}
 
-    public String getNombre() {
-        return nombre;
-    }
+    public double getPrecio() {return precio;}
+    public void setPrecio(double precio) {this.precio = precio;}
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
+    public int getDisponibles() {return disponibles;}
+    public void setDisponibles(int disponibles) {this.disponibles = disponibles;}
 
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
-
-    public double getPrecio() {
-        return precio;
-    }
-
-    public void setPrecio(double precio) {
-        this.precio = precio;
-    }
-
-    public int getDisponibles() {
-        return disponibles;
-    }
-
-    public void setDisponibles(int disponibles) {
-        this.disponibles = disponibles;
-    }
-
-    public ArrayList<Partido> getPartidos() {
-        return partidos;
-    }
-
-    public void setPartidos(ArrayList<Partido> partidos) {
-        this.partidos = partidos;
-    }
+    public ArrayList<Partido> getPartidos() {return partidos;}
+    public void setPartidos(ArrayList<Partido> partidos) {this.partidos = partidos;}
 
 }
