@@ -18,6 +18,45 @@ public class Sistema {
         this.partidos = new ArrayList<>();
     }
 
+    public void cargarUsuario(){
+
+    }
+    
+    public void cargarPartidos(){
+        
+    }
+
+    public void cargarKits(){
+        
+    }
+
+    public void cargarCompras(){
+        
+    }
+
+    public void mostrarMenu(){
+
+    }
+
+    public void iniciarSesion(){
+
+    }
+
+
+    public void notificar(Aficionado aficionado, Compra compraRealizada){
+
+    }
+
+    public void notificar(Aficionado aficionado, Compra compraRealizada, Kit kitAdquirido){
+
+    }
+
+    public void notificar(Organizador organizador, String datosReporte){
+
+    }
+
+
+
     public ArrayList<Usuario> getUsuarios() {
         return usuarios;
     }
