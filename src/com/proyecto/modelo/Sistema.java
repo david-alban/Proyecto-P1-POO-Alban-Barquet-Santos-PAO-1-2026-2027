@@ -11,6 +11,52 @@ public class Sistema {
 
     // Constructor del método Sistema
 
+    public Sistema(){
+        this.usuarios = new ArrayList<>();
+        this.compras = new ArrayList<>();
+        this.kits = new ArrayList<>();
+        this.partidos = new ArrayList<>();
+    }
+
+    public void cargarUsuario(){
+
+    }
+    
+    public void cargarPartidos(){
+        
+    }
+
+    public void cargarKits(){
+        
+    }
+
+    public void cargarCompras(){
+        
+    }
+
+    public void mostrarMenu(){
+
+    }
+
+    public void iniciarSesion(){
+
+    }
+
+
+    public void notificar(Aficionado aficionado, Compra compraRealizada){
+
+    }
+
+    public void notificar(Aficionado aficionado, Compra compraRealizada, Kit kitAdquirido){
+
+    }
+
+    public void notificar(Organizador organizador, String datosReporte){
+
+    }
+
+
+
     public ArrayList<Usuario> getUsuarios() {
         return usuarios;
     }
