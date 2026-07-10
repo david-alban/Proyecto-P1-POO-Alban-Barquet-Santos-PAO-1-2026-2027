@@ -29,7 +29,7 @@ public class Organizador extends Usuario {
         this.cargo = partesOrg[5];
     }
 
-
+    // Método toString para mostrar la información del Organizador
     @Override
     public String toString() {
         return codigoUnico + "|" + cedula + "|" + nombre + "|" + apellido + "|" + empresa + "|" + cargo;
