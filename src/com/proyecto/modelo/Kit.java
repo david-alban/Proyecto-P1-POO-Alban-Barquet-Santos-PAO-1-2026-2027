@@ -23,10 +23,29 @@ public class Kit {
         this.partidos = partidos;
     }
 
+    // Método para agregar un partido al kit
     public void agregarPartido(Partido p) {
         this.partidos.add(p);
     }
     
+    // Constructor del método Kit a partir de una línea de texto
+    public Kit(String linea) {
+        String[] datos =  linea.split("\\|");
+        this.codigo = datos[0];
+        this.nombre = datos[1];
+        this.descripcion = datos[2];
+        this.partidos = new ArrayList<>();
+        this.precio = Double.valueOf(datos[3]);
+        this.disponibles = Integer.valueOf(datos[4]);
+    }
+
+    // Método toString para mostrar la información del Kit
+    @Override   
+    public String toString() {
+        return codigo + "|" + nombre + "|" + descripcion + 
+                "|" + partidos + "|" + precio + "|" + disponibles;
+    }
+
     public String getCodigo() {return codigo;}
     public void setCodigo(String codigo) {this.codigo = codigo;}
 
