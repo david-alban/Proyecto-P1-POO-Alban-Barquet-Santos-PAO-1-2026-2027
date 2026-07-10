@@ -1,5 +1,6 @@
 package com.proyecto.modelo;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Partido {
@@ -12,12 +13,9 @@ public class Partido {
     private String ciudad;
     private int capacidad;
     private int stockGeneral;
-    private int StockPreferencial;
-    private int StockVIP;
+    private int stockPreferencial;
+    private int stockVIP;
     private String fase;
-    private static final double precioBaseGeneral = 45.00;
-    private static final double precioBasePreferencial = 85.00;
-    private static final double precioBaseVIP = 150.00;
 
     // Constructor del método Partido
     public Partido(String codigo, String local, String visitante, Date fecha, String estadio, String ciudad,
@@ -30,9 +28,69 @@ public class Partido {
         this.ciudad = ciudad;
         this.capacidad = capacidad;
         this.stockGeneral = stockGeneral;
-        this.StockPreferencial = StockPreferencial;
-        this.StockVIP = StockVIP;
+        this.stockPreferencial = StockPreferencial;
+        this.stockVIP = StockVIP;
         this.fase = fase;
+    }
+
+    // Método para calcular el precio con respecto a la fase del partido
+    public double getPrecioGeneral() {
+        if (fase.equalsIgnoreCase("Octavos de final")) return 60.0;
+        if (fase.equalsIgnoreCase("Cuartos de final")) return 75.0;
+        if (fase.equalsIgnoreCase("Semifinal")) return 90.0;
+        if (fase.equalsIgnoreCase("Final")) return 120.0;
+        return 45.0; // Precio base para otras fases
+    }  
+
+    public double getPrecioPreferencial() {
+        if (fase.equalsIgnoreCase("Octavos de final")) return 100.0;
+        if (fase.equalsIgnoreCase("Cuartos de final")) return 120.0;
+        if (fase.equalsIgnoreCase("Semifinal")) return 150.0;
+        if (fase.equalsIgnoreCase("Final")) return 200.0;
+        return 85.0; // Precio base para otras fases
+    }
+    
+    public double getPrecioVIP() {
+        if (fase.equalsIgnoreCase("Octavos de final")) return 180.0;
+        if (fase.equalsIgnoreCase("Cuartos de final")) return 220.0;
+        if (fase.equalsIgnoreCase("Semifinal")) return 280.0;
+        if (fase.equalsIgnoreCase("Final")) return 350.0;
+        return 45.0; // Precio base para otras fases
+    }
+
+    public Partido(String linea) {
+        String[] datos =  linea.split("\\|");
+
+        this.codigo = datos[0];
+        this.local = datos[1];
+        this.visitante = datos[2];
+        this.estadio = datos[4];
+        this.ciudad = datos[5];
+        this.capacidad = Integer.valueOf(datos[6]);
+        this.stockGeneral = Integer.valueOf(datos[7]);     
+        this.stockPreferencial = Integer.valueOf(datos[8]);
+        this.stockVIP = Integer.valueOf(datos[9]);
+
+        this.fase = datos[10];
+    } 
+
+    // Método toString para mostrar la información del partido
+    public String toString() {
+        // Formateador para mostrar la fecha como YYYY-MM-DD
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        return "Partido{" +
+                "codigo='" + codigo + '\'' +
+                ", local='" + local + '\'' +
+                ", visitante='" + visitante + '\'' +
+                ", fecha=" + sdf.format(fecha) +
+                ", estadio='" + estadio + '\'' +
+                ", ciudad='" + ciudad + '\'' +
+                ", capacidad=" + capacidad +
+                ", stockGeneral=" + stockGeneral +
+                ", stockPreferencial=" + stockPreferencial +
+                ", stockVIP=" + stockVIP +
+                ", fase='" + fase + '\'' +
+                '}';
     }
 
     // Getters/Setters
@@ -60,11 +118,11 @@ public class Partido {
     public int getStockGeneral() {return stockGeneral;}
     public void setStockGeneral(int stockGeneral) {this.stockGeneral = stockGeneral;}
 
-    public int getStockPreferencial() {return StockPreferencial;}
-    public void setStockPreferencial(int StockPreferencial) {this.StockPreferencial = StockPreferencial;}
+    public int getStockPreferencial() {return stockPreferencial;}
+    public void setStockPreferencial(int StockPreferencial) {this.stockPreferencial = StockPreferencial;}
 
-    public int getStockVIP() {return StockVIP;}
-    public void setStockVIP(int StockVIP) {this.StockVIP = StockVIP;}
+    public int getStockVIP() {return stockVIP;}
+    public void setStockVIP(int StockVIP) {this.stockVIP = StockVIP;}
 
     public String getFase() {return fase;}
     public void setFase(String fase) {this.fase = fase;}
