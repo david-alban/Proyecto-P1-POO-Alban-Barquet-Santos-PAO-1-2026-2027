@@ -75,22 +75,17 @@ public class Partido {
     } 
 
     // Método toString para mostrar la información del partido
+    @Override
     public String toString() {
         // Formateador para mostrar la fecha como YYYY-MM-DD
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        return "Partido{" +
-                "codigo='" + codigo + '\'' +
-                ", local='" + local + '\'' +
-                ", visitante='" + visitante + '\'' +
-                ", fecha=" + sdf.format(fecha) +
-                ", estadio='" + estadio + '\'' +
-                ", ciudad='" + ciudad + '\'' +
-                ", capacidad=" + capacidad +
-                ", stockGeneral=" + stockGeneral +
-                ", stockPreferencial=" + stockPreferencial +
-                ", stockVIP=" + stockVIP +
-                ", fase='" + fase + '\'' +
-                '}';
+        return "Código: " + codigo + "\n" +
+               "Partido: " + local + " vs " + visitante + "\n" +
+               "Fecha: " + sdf.format(fecha) + "\n" +
+               "Estadio: " + estadio + "\n" +
+               "Ciudad: " + ciudad + "\n" +
+               "Fase: " + fase;
+                
     }
 
     // Getters/Setters

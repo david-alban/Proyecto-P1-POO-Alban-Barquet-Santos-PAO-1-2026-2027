@@ -25,7 +25,7 @@ public abstract class Usuario {
     }
 
     public Usuario(String lineaString) {
-        String[] datos = lineaString.split(",");
+        String[] datos = lineaString.split("\\|");
         this.codigoUnico = datos[0];
         this.cedula = datos[1];
         this.nombre = datos[2];
@@ -36,13 +36,11 @@ public abstract class Usuario {
         this.rol = Rol.valueOf(datos[7]);
     }
 
-    // Método toString para mostrar la información del partido
+    // Método toString para mostrar la información del Usuario
+    @Override
     public String toString() {
-        return "Usuario [codigoUnico=" + codigoUnico + 
-        ", cedula=" + cedula + ", nombre=" + nombre + 
-        ", apellido=" + apellido + ", usuario=" + usuario + 
-        ", contraseña=" + contraseña + ", correo=" + correo + 
-        ", rol=" + rol + "]";
+        return "Nombre: " + nombre + " " + apellido + " | Cédula: " + cedula + 
+               " | Correo: " + correo + " | Rol: " + rol;
     }
 
     // Getters/Setters
