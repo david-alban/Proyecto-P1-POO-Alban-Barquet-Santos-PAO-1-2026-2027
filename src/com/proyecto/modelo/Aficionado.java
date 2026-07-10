@@ -13,6 +13,24 @@ public class Aficionado extends Usuario {
         this.paisFavorito = paisFavorito;
     }
 
+    // Constructor del método Aficionado a partir de una línea de texto
+    public Aficionado(String lineaUsuario, String lineaAficionado) {
+        //Linea para extraer los datos de la clase padre
+        super(lineaUsuario);
+
+        //Extrameos solos los datos que se solicitan
+        String[] partesAfi = lineaAficionado.split("\\|");
+        this.celular = partesAfi[4];
+        this.paisFavorito = partesAfi[5];
+    }
+    
+    // Método toString para mostrar la información del Aficionado
+    @Override
+    public String toString() {
+        return codigoUnico + "|" + cedula + "|" + nombre + 
+        "|" + apellido + "|" + celular + "|" + paisFavorito;
+    }
+
     // Sobreescritura del método consultarEntradas
     @Override
     public void consultarEntradas() {

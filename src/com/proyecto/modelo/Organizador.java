@@ -19,6 +19,7 @@ public class Organizador extends Usuario {
 
     }
 
+    // Constructor del método Organizador a partir de una línea de texto
     public Organizador(String lineaUsuario, String lineaOrganizador) {
         //Linea para extraer los datos de la clase padre
         super(lineaUsuario);

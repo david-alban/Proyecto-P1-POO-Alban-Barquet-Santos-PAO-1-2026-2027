@@ -24,6 +24,7 @@ public abstract class Usuario {
         this.rol = rol;
     }
 
+    // Constructor del método Usuario a partir de una línea de texto
     public Usuario(String lineaString) {
         String[] datos = lineaString.split("\\|");
         this.codigoUnico = datos[0];
