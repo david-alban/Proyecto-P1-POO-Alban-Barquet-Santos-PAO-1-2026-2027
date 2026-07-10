@@ -19,6 +19,23 @@ public class Organizador extends Usuario {
 
     }
 
+    public Organizador(String lineaUsuario, String lineaOrganizador) {
+        //Linea para extraer los datos de la clase padre
+        super(lineaUsuario);
+
+        //Extrameos solos los datos que se solicitan
+        String[] partesOrg = lineaOrganizador.split("\\|");
+        this.empresa = partesOrg[4];
+        this.cargo = partesOrg[5];
+    }
+
+    // Método toString para mostrar la información del Organizador
+    @Override
+    public String toString() {
+        return codigoUnico + "|" + cedula + "|" + nombre + "|" + apellido + "|" + empresa + "|" + cargo;
+    }
+
+
     //Getters/Setters
     public String getEmpresa() {
         return empresa;
