@@ -96,16 +96,14 @@ public class Sistema {
             return;
         }
 
-        System.out.println("=========================================");
-        System.out.println("          PARTIDOS ENCONTRADOS           ");
-        System.out.println("=========================================\n");
+        System.out.println("Partidos encontrados: \n");
 
         int i = 1;
         for (Partido partido : partidos) {
             if (partido != null) {
                 System.out.print(i + ". ");
                 System.out.println(partido);
-                System.out.println("\n-----------------------------------------\n");
+                System.out.println("\n-----------------------------------------\n\n");
                 i++;
             }
         }
