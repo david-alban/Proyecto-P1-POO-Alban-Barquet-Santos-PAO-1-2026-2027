@@ -2,6 +2,7 @@ package com.proyecto.modelo;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.text.ParseException;
 
 public class Partido {
 
@@ -59,13 +60,14 @@ public class Partido {
     }
 
     // Constructor del método Partido a partir de una línea de texto
-    public Partido(String linea) {
+    public Partido(String linea) throws ParseException {
         String[] datos =  linea.split("\\|");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
         this.codigo = datos[0];
         this.local = datos[1];
         this.visitante = datos[2];
-        this.estadio = datos[4];
+        this.fecha = sdf.parse(datos[3]); 
         this.ciudad = datos[5];
         this.capacidad = Integer.valueOf(datos[6]);
         this.stockGeneral = Integer.valueOf(datos[7]);     
@@ -78,7 +80,7 @@ public class Partido {
     // Método toString para mostrar la información del partido
     @Override
     public String toString() {
-        // Formateador para mostrar la fecha como YYYY-MM-DD
+        // Formato de fecha para mostrarla en el toString "yyyy-MM-dd"
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         return "Código: " + codigo + "\n" +
                "Partido: " + local + " vs " + visitante + "\n" +
