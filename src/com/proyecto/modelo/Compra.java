@@ -13,6 +13,11 @@ public class Compra {
 
     public static int nextCodigo = 1;
 
+
+    // Contructor Compra que recibe un string
+    
+
+    
     // Constructor del método Compra 
     public Compra(String tipo, String codigoReferencial, int cantidad, double valorPagado, String codigoAficionado) {
         this.tipo = tipo;

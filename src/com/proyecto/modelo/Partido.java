@@ -59,6 +59,9 @@ public class Partido {
         return 45.0; // Precio base para otras fases
     }
 
+
+
+    
     // Constructor del método Partido a partir de una línea de texto
     public Partido(String linea) throws ParseException {
         String[] datos =  linea.split("\\|");
