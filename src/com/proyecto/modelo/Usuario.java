@@ -110,5 +110,5 @@ public abstract class Usuario {
     }
 
     // Clase abstracta consultarEntradas
-    protected abstract void consultarEntradas();
+    protected abstract void consultarEntradas(Sistema sis);
 }
