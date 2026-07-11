@@ -33,10 +33,10 @@ public class Sistema {
         ArrayList<String> lineas = com.proyecto.util.ManejoArchivos.LeeFichero("usuarios.txt");
         ArrayList<String> lineasA = com.proyecto.util.ManejoArchivos.LeeFichero("aficionados.txt");
         ArrayList<String> lineasO = com.proyecto.util.ManejoArchivos.LeeFichero("organizadores.txt");
-        if (lineas != null && !lineas.isEmpty()) lineas.remove(0);
-        if (lineasA != null && !lineasA.isEmpty()) lineasA.remove(0);
-        if (lineasO != null && !lineasO.isEmpty()) lineasO.remove(0);
-        for (String linea : lineas){
+
+
+        for (int i = 0; i<lineas.size();i++){
+            String linea = lineas.get(i);
             if ((linea != null)&&(!linea.trim().isEmpty())){
                 String[] datos =  linea.split("\\|");
                 String code = datos[0];
@@ -44,15 +44,19 @@ public class Sistema {
 
                 if (linea.endsWith("A") || linea.endsWith("a")){
                     // Es aficionado
-
-                    this.usuarios.add(new Aficionado(linea,lineasA.get(buscarIndiceRespectivo(lineasA, code))));
+                    int index = buscarIndiceRespectivo(lineasA, code);
+                    if (index != -1){
+                        this.usuarios.add(new Aficionado(linea,lineasA.get(index)));
+                    } else {System.out.println("error aficionado");}
 
                 } else if (linea.endsWith("O") || linea.endsWith("o")){
                     // Es organizador
+                    int index = buscarIndiceRespectivo(lineasO, code);
+                    if (index != -1){
+                        this.usuarios.add(new Organizador(linea,lineasO.get(index)));
+                    } else {System.out.println("error organizador");}
 
-                    this.usuarios.add(new Organizador(linea,lineasO.get(buscarIndiceRespectivo(lineasO, code))));
-                    
-                }
+                } else  {System.out.print("wtf");}
         
                 
         
@@ -68,7 +72,6 @@ public class Sistema {
     // https://stackoverflow.com/questions/11665195/unhandled-exception-type-parseexception
     public void cargarPartidos(){
         ArrayList<String> lineas = com.proyecto.util.ManejoArchivos.LeeFichero("partidos.txt");
-        if (lineas != null && !lineas.isEmpty()) lineas.remove(0);
         for (String linea : lineas){
             if ((linea != null)&&(!linea.trim().isEmpty())){
                 try {
@@ -83,7 +86,6 @@ public class Sistema {
     //terminado cargarPartidos
     public void cargarKits(){
         ArrayList<String> lineas = com.proyecto.util.ManejoArchivos.LeeFichero("kits.txt");
-        if (lineas != null && !lineas.isEmpty()) lineas.remove(0);
         for (String linea : lineas){
             if ((linea != null)&&(!linea.trim().isEmpty())){
                 
@@ -94,7 +96,6 @@ public class Sistema {
 
     // public void cargarCompras(){
     //       ArrayList<String> lineas = com.proyecto.util.ManejoArchivos.LeeFichero("compras.txt");
-    //       lineas.remove(0);
     //     for (String linea : lineas){
     //         if ((linea != null)&&(!linea.trim().isEmpty())){
                 

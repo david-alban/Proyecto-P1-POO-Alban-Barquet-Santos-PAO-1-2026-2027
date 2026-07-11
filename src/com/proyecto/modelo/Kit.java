@@ -35,8 +35,8 @@ public class Kit {
         this.nombre = datos[1];
         this.descripcion = datos[2];
         this.partidos = new ArrayList<>();
-        this.precio = Double.valueOf(datos[3]);
-        this.disponibles = Integer.valueOf(datos[4]);
+        this.precio = Double.valueOf(datos[4]);
+        this.disponibles = Integer.valueOf(datos[5]);
     }
 
     // Método toString para mostrar la información del Kit
