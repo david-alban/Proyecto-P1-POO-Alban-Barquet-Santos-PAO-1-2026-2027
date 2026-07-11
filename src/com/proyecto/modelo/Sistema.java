@@ -154,16 +154,66 @@ public class Sistema {
 
     }
 
+    //Método notificar de las entradas para aficionados
     public void notificar(Aficionado aficionado, Compra compraRealizada) {
+        // Se busca el codigo referencial de acuerdo al partido que se compró
+        Partido partidoComprado = null;
+        for (Partido p: partidos) {
+            if (p.getCodigo().equals(compraRealizada.getCodigoReferencial())) {
+                partidoComprado = p;
+                break;
+            }
+        }
 
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+
+        // Mostrar mensaje
+        System.out.println("\n--- ENVIANDO NOTIFICIACIÓN ---");
+        System.out.println("De correoSistema");
+        System.out.println("Para: " + aficionado.getCorreo());
+        System.out.println("Asunto: Compra de entrada realizada");
+        System.out.println("Estimado/a " + aficionado.getNombres() + " " + aficionado.getApellidos() + ",");
+        System.out.println("Su compra ha sido registrada exitosamente con el código " + compraRealizada.getCodigoCompra() + " el dia " + sdf.format(compraRealizada.getFechaCompra()) + ".");
+        
+        if (partidoComprado != null) {
+            System.out.println("Partido: " + partidoComprado.getLocal() + " vs " + partidoComprado.getVisitante());
+            System.out.println("Código del partido :" +  partidoComprado.getCodigo());
+        } 
+
+        System.out.println("Cantidad: " + compraRealizada.getCantidad());
+        System.out.println("Valor Pagado: $" + compraRealizada.getValorPagado());
+        System.out.println("Gracias por adquirir sus entradas para el Mundial.\n");
     }
 
+    // Método notificar de los kits para aficionados
     public void notificar(Aficionado aficionado, Compra compraRealizada, Kit kitAdquirido) {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
+        //Mostrar Mensaje
+        System.out.println("\n--- ENVIANDO NOTIFICIACIÓN ---");
+        System.out.println("De correoSistema");
+        System.out.println("Para: " + aficionado.getCorreo());
+        System.out.println("Asunto: Compra de kit realizada");
+        System.out.println("Estimado/a " + aficionado.getNombres() + " " + aficionado.getApellidos() + ",");
+        System.out.println("Su compra ha sido registrada exitosamente con el código " + compraRealizada.getCodigoCompra() + " el dia " + sdf.format(compraRealizada.getFechaCompra()) + ".");
+        
+        
+        System.out.println("Kit adquirido: " + kitAdquirido.getNombre());
+        System.out.println("Código del kit: " + kitAdquirido.getCodigo());
+        System.out.println("Cantidad de kits: " + compraRealizada.getCantidad());
+        System.out.println("Valor total pagado: $" + compraRealizada.getValorPagado());
     }
 
+    // Método notificar de los reportes para organizadores
     public void notificar(Organizador organizador, String datosReporte) {
+        System.out.println("\n--- ENVIANDO NOTIFICIACIÓN ---");
+        System.out.println("De correoSistema");
+        System.out.println("Para: " + organizador.getCorreo());
+        System.out.println("Asunto: Reporte de compras registradas");
+        System.out.println("Estimado/a " + organizador.getNombres() + " " + organizador.getApellidos() + ",");
+        System.out.println("Se ha generado el reporte de compras del sistema.");
 
+        System.out.println(datosReporte);
     }
 
     public ArrayList<Usuario> getUsuarios() {
@@ -236,4 +286,11 @@ public class Sistema {
             }
         }
     }
+
+    
+        
+
+
+
+
 }
