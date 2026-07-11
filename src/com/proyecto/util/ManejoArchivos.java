@@ -71,4 +71,12 @@ public class ManejoArchivos {
         }
     }
 
+    public static boolean existeArchivo(String nombreArchivo) {
+        File archivo = new File(nombreArchivo);
+        if(archivo.exists()){
+            return true;
+        }
+        return false;
+    }
+
 }

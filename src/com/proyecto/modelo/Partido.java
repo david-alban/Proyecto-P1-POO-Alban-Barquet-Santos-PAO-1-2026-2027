@@ -36,96 +36,162 @@ public class Partido {
 
     // Método para calcular el precio con respecto a la fase del partido
     public double getPrecioGeneral() {
-        if (fase.equalsIgnoreCase("Octavos de final")) return 60.0;
-        if (fase.equalsIgnoreCase("Cuartos de final")) return 75.0;
-        if (fase.equalsIgnoreCase("Semifinal")) return 90.0;
-        if (fase.equalsIgnoreCase("Final")) return 120.0;
+        if (fase.equalsIgnoreCase("Octavos de final"))
+            return 60.0;
+        if (fase.equalsIgnoreCase("Cuartos de final"))
+            return 75.0;
+        if (fase.equalsIgnoreCase("Semifinal"))
+            return 90.0;
+        if (fase.equalsIgnoreCase("Final"))
+            return 120.0;
         return 45.0; // Precio base para otras fases
-    }  
+    }
 
     public double getPrecioPreferencial() {
-        if (fase.equalsIgnoreCase("Octavos de final")) return 100.0;
-        if (fase.equalsIgnoreCase("Cuartos de final")) return 120.0;
-        if (fase.equalsIgnoreCase("Semifinal")) return 150.0;
-        if (fase.equalsIgnoreCase("Final")) return 200.0;
+        if (fase.equalsIgnoreCase("Octavos de final"))
+            return 100.0;
+        if (fase.equalsIgnoreCase("Cuartos de final"))
+            return 120.0;
+        if (fase.equalsIgnoreCase("Semifinal"))
+            return 150.0;
+        if (fase.equalsIgnoreCase("Final"))
+            return 200.0;
         return 85.0; // Precio base para otras fases
     }
-    
+
     public double getPrecioVIP() {
-        if (fase.equalsIgnoreCase("Octavos de final")) return 180.0;
-        if (fase.equalsIgnoreCase("Cuartos de final")) return 220.0;
-        if (fase.equalsIgnoreCase("Semifinal")) return 280.0;
-        if (fase.equalsIgnoreCase("Final")) return 350.0;
+        if (fase.equalsIgnoreCase("Octavos de final"))
+            return 180.0;
+        if (fase.equalsIgnoreCase("Cuartos de final"))
+            return 220.0;
+        if (fase.equalsIgnoreCase("Semifinal"))
+            return 280.0;
+        if (fase.equalsIgnoreCase("Final"))
+            return 350.0;
         return 45.0; // Precio base para otras fases
     }
 
-
-
-    
     // Constructor del método Partido a partir de una línea de texto
     public Partido(String linea) throws ParseException {
-        String[] datos =  linea.split("\\|");
+        String[] datos = linea.split("\\|");
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
         this.codigo = datos[0];
         this.local = datos[1];
         this.visitante = datos[2];
-        this.fecha = sdf.parse(datos[3]); 
+        this.fecha = sdf.parse(datos[3]);
+        this.estadio = datos[4];
         this.ciudad = datos[5];
         this.capacidad = Integer.valueOf(datos[6]);
-        this.stockGeneral = Integer.valueOf(datos[7]);     
+        this.stockGeneral = Integer.valueOf(datos[7]);
         this.stockPreferencial = Integer.valueOf(datos[8]);
         this.stockVIP = Integer.valueOf(datos[9]);
 
         this.fase = datos[10];
-    } 
+    }
 
     // Método toString para mostrar la información del partido
     @Override
     public String toString() {
-        // Formato de fecha para mostrarla en el toString "yyyy-MM-dd"
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        return "Código: " + codigo + "\n" +
-               "Partido: " + local + " vs " + visitante + "\n" +
-               "Fecha: " + sdf.format(fecha) + "\n" +
-               "Estadio: " + estadio + "\n" +
-               "Ciudad: " + ciudad + "\n" +
-               "Fase: " + fase;
-                
+
+        return "Código: " + this.codigo + "\n" +
+                "Partido: " + this.local + " vs " + this.visitante + "\n" +
+                "Fecha: " + sdf.format(this.fecha) + "\n" +
+                "Estadio: " + this.estadio + "\n" +
+                "Ciudad: " + this.ciudad + "\n" +
+                "Fase: " + this.fase + "\n" +
+                "Stock:  General: " + this.stockGeneral + " | Preferencial: " + this.stockPreferencial + " | VIP: " + this.stockVIP + "\n" +
+                "Precios:  General: " + getPrecioGeneral() + " | Preferencial: " + getPrecioPreferencial() + " | VIP: " + getPrecioVIP();
     }
 
     // Getters/Setters
-    public String getCodigo() {return codigo;}
-    public void setCodigo(String codigo) {this.codigo = codigo;}
+    public String getCodigo() {
+        return codigo;
+    }
 
-    public String getLocal() {return local;}
-    public void setLocal(String local) {this.local = local;}
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
+    }
 
-    public String getVisitante() {return visitante;}
-    public void setVisitante(String visitante) {this.visitante = visitante;}
+    public String getLocal() {
+        return local;
+    }
 
-    public Date getFecha() {return fecha;}
-    public void setFecha(Date fecha) {this.fecha = fecha;}
+    public void setLocal(String local) {
+        this.local = local;
+    }
 
-    public String getEstadio() {return estadio;}
-    public void setEstadio(String estadio) {this.estadio = estadio;}
+    public String getVisitante() {
+        return visitante;
+    }
 
-    public String getCiudad() {return ciudad;}
-    public void setCiudad(String ciudad) {this.ciudad = ciudad;}
+    public void setVisitante(String visitante) {
+        this.visitante = visitante;
+    }
 
-    public int getCapacidad() {return capacidad;}
-    public void setCapacidad(int capacidad) {this.capacidad = capacidad;}
+    public Date getFecha() {
+        return fecha;
+    }
 
-    public int getStockGeneral() {return stockGeneral;}
-    public void setStockGeneral(int stockGeneral) {this.stockGeneral = stockGeneral;}
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
+    }
 
-    public int getStockPreferencial() {return stockPreferencial;}
-    public void setStockPreferencial(int StockPreferencial) {this.stockPreferencial = StockPreferencial;}
+    public String getEstadio() {
+        return estadio;
+    }
 
-    public int getStockVIP() {return stockVIP;}
-    public void setStockVIP(int StockVIP) {this.stockVIP = StockVIP;}
+    public void setEstadio(String estadio) {
+        this.estadio = estadio;
+    }
 
-    public String getFase() {return fase;}
-    public void setFase(String fase) {this.fase = fase;}
+    public String getCiudad() {
+        return ciudad;
+    }
+
+    public void setCiudad(String ciudad) {
+        this.ciudad = ciudad;
+    }
+
+    public int getCapacidad() {
+        return capacidad;
+    }
+
+    public void setCapacidad(int capacidad) {
+        this.capacidad = capacidad;
+    }
+
+    public int getStockGeneral() {
+        return stockGeneral;
+    }
+
+    public void setStockGeneral(int stockGeneral) {
+        this.stockGeneral = stockGeneral;
+    }
+
+    public int getStockPreferencial() {
+        return stockPreferencial;
+    }
+
+    public void setStockPreferencial(int StockPreferencial) {
+        this.stockPreferencial = StockPreferencial;
+    }
+
+    public int getStockVIP() {
+        return stockVIP;
+    }
+
+    public void setStockVIP(int StockVIP) {
+        this.stockVIP = StockVIP;
+    }
+
+    public String getFase() {
+        return fase;
+    }
+
+    public void setFase(String fase) {
+        this.fase = fase;
+    }
 
 }

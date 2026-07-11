@@ -1,5 +1,7 @@
 package com.proyecto.modelo;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Compra {
@@ -13,12 +15,20 @@ public class Compra {
 
     public static int nextCodigo = 1;
 
+    // Constructor Compra que recibe un string
+    public Compra(String linea) throws ParseException {
+        String[] datos = linea.split("\\|");
+        this.codigoCompra = Integer.parseInt(datos[0]);
+        this.tipo = datos[1];
+        this.codigoReferencial = datos[2];
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+        this.fechaCompra = sdf.parse(datos[3]);
+        this.cantidad = Integer.valueOf(datos[4]);
+        this.valorPagado = Double.valueOf(datos[5]);
+        this.codigoAficionado = datos[6];
+    }
 
-    // Contructor Compra que recibe un string
-    
-
-    
-    // Constructor del método Compra 
+    // Constructor del método Compra
     public Compra(String tipo, String codigoReferencial, int cantidad, double valorPagado, String codigoAficionado) {
         this.tipo = tipo;
         this.codigoReferencial = codigoReferencial;
