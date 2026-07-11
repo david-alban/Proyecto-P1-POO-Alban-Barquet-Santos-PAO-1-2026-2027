@@ -96,4 +96,18 @@ public class Compra {
     public void setCodigoAficionado(String codigoAficionado) {
         this.codigoAficionado = codigoAficionado;
     }
+
+    @Override
+    public String toString() {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+
+        return "Código de Compra: " + this.codigoCompra + "\n" +
+                "Tipo:             " + this.tipo + "\n" +
+                "Ref. Producto:    " + this.codigoReferencial + "\n" +
+                "Fecha de Compra:  " + sdf.format(this.fechaCompra) + "\n" +
+                "Cantidad:         " + this.cantidad + "\n" +
+                "Total Pagado:     $" + String.format("%.2f", this.valorPagado) + "\n" +
+                "Aficionado:       " + this.codigoAficionado + "\n" +
+                "-----------------------------------------";
+    }
 }
