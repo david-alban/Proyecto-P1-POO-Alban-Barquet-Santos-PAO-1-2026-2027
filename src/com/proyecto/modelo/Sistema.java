@@ -32,9 +32,9 @@ public class Sistema {
 
     // terminado método complementario para cargar usuarios
     public void cargarUsuario() {
-        ArrayList<String> lineas = com.proyecto.util.ManejoArchivos.LeeFichero("usuarios.txt");
-        ArrayList<String> lineasA = com.proyecto.util.ManejoArchivos.LeeFichero("aficionados.txt");
-        ArrayList<String> lineasO = com.proyecto.util.ManejoArchivos.LeeFichero("organizadores.txt");
+        ArrayList<String> lineas = com.proyecto.util.ManejoArchivos.LeeFichero("recursos/usuarios.txt");
+        ArrayList<String> lineasA = com.proyecto.util.ManejoArchivos.LeeFichero("recursos/aficionados.txt");
+        ArrayList<String> lineasO = com.proyecto.util.ManejoArchivos.LeeFichero("recursos/organizadores.txt");
 
         for (int i = 0; i < lineas.size(); i++) {
             String linea = lineas.get(i);
@@ -75,7 +75,7 @@ public class Sistema {
     // https://www.w3schools.com/java/java_try_catch.asp
     // https://stackoverflow.com/questions/11665195/unhandled-exception-type-parseexception
     public void cargarPartidos() {
-        ArrayList<String> lineas = com.proyecto.util.ManejoArchivos.LeeFichero("partidos.txt");
+        ArrayList<String> lineas = com.proyecto.util.ManejoArchivos.LeeFichero("recursos/partidos.txt");
         for (String linea : lineas) {
             if ((linea != null) && (!linea.trim().isEmpty())) {
                 try {
@@ -89,11 +89,11 @@ public class Sistema {
 
     // terminado cargarPartidos
     public void cargarKits() {
-        ArrayList<String> lineas = com.proyecto.util.ManejoArchivos.LeeFichero("kits.txt");
+        ArrayList<String> lineas = com.proyecto.util.ManejoArchivos.LeeFichero("recursos/kits.txt");
         for (String linea : lineas) {
             if ((linea != null) && (!linea.trim().isEmpty())) {
 
-                this.kits.add(new Kit(linea));
+                this.kits.add(new Kit(linea,partidos));
             }
         }
     }
@@ -218,4 +218,22 @@ public class Sistema {
         }
     }
 
+    public void consultarKits() {
+        if (partidos.isEmpty()) {
+            System.out.println("No hay kits cargados en el sistema.");
+            return;
+        }
+
+        System.out.println("Kits encontrados: \n");
+
+        int i = 1;
+        for (Kit kit : kits) {
+            if (kit != null) {
+                System.out.print(i + ". ");
+                System.out.println(kit);
+                System.out.println("\n-----------------------------------------\n\n");
+                i++;
+            }
+        }
+    }
 }
