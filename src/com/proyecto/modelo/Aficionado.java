@@ -52,4 +52,10 @@ public class Aficionado extends Usuario {
     public void setPaisFavorito(String paisFavorito) {
         this.paisFavorito = paisFavorito;
     }
+
+    // Métodos comprar
+    public void comprar(Partido partido,Zona zona, int cantidad ){
+        
+    }
+
 }

@@ -24,7 +24,7 @@ public class Organizador extends Usuario {
         //Linea para extraer los datos de la clase padre
         super(lineaUsuario);
 
-        //Extrameos solos los datos que se solicitan
+        //Extraemos solos los datos que se solicitan
         String[] partesOrg = lineaOrganizador.split("\\|");
         this.empresa = partesOrg[4];
         this.cargo = partesOrg[5];
