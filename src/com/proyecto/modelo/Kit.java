@@ -39,11 +39,30 @@ public class Kit {
         this.disponibles = Integer.valueOf(datos[5]);
     }
 
+    public Kit(String linea, ArrayList<Partido> partidos){
+        this(linea);
+        String[] datos =  linea.split("\\|");
+        String[] codigos = datos[3].split(",");
+        for(String codigo:codigos){
+            for(Partido partido:partidos){
+                if(codigo.equals(partido.getCodigo())){
+                    this.partidos.add(partido);
+                }     
+            }
+        }
+
+    }
+
     // Método toString para mostrar la información del Kit
     @Override   
     public String toString() {
-        return codigo + "|" + nombre + "|" + descripcion + 
-                "|" + partidos + "|" + precio + "|" + disponibles;
+        String p = "";
+        for(Partido partido:partidos){
+            p = p + "\n- " + partido.getLocal() + " vs " + partido.getVisitante();  
+
+        }
+        return nombre + '\n' + "Incluye:\n" + p + "\n\nPrecio: " + precio + "\nDisponibles: " + disponibles ;
+
     }
 
     public String getCodigo() {return codigo;}

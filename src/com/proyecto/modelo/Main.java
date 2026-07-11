@@ -6,9 +6,7 @@ public class Main {
         Sistema sistema = new Sistema();
         sistema.pruebaCargarDatos(); 
         sistema.cargarCompras();
-        sistema.consultarPartidos();
+        System.out.println("\n\n");
+        sistema.consultarKits();
     }
-
-
-
 }
