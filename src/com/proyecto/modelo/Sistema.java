@@ -117,14 +117,16 @@ public class Sistema {
         }
     }
 
-    public static void registrarCompra(Compra compra) {
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+    public void registrarCompra(Compra compra) {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         String fechaFormateada = sdf.format(compra.getFechaCompra());
-        String linea = compra.getCodigoCompra() + '|' + compra.getTipo() + '|' + compra.getCodigoReferencial() + '|'
-                + fechaFormateada+ '|' + compra.getCantidad() + '|' + compra.getValorPagado() + '|'
+        String linea = compra.getCodigoCompra() + "|" + compra.getTipo() + '|' + compra.getCodigoReferencial() + '|'
+                + fechaFormateada + '|' + compra.getCantidad() + '|' + compra.getValorPagado() + '|'
                 + compra.getCodigoAficionado();
         ManejoArchivos.EscribirArchivo("recursos/compras.txt", linea);
+        compras.add(compra);
     }
+
 
     public void pruebaCargarDatos() {
         this.cargarUsuario();
