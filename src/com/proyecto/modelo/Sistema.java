@@ -3,6 +3,7 @@ package com.proyecto.modelo;
 import com.proyecto.util.ManejoArchivos;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Sistema {
 
@@ -151,7 +152,66 @@ public class Sistema {
     }
 
     public void iniciarSesion() {
+        Scanner sc = new Scanner(System.in);
 
+        System.out.println("\n=== INICIAR SESIÓN ===");
+        System.out.print("Usuario: ");
+        String usuario = sc.nextLine();
+        System.out.print("Contraseña: ");
+        String contraseña = sc.nextLine();
+
+        Usuario usuarioAutenticado = null;
+
+        for (Usuario u : usuarios) {
+            if (u.getUsuario().equals(usuario) && u.getContraseña().equals(contraseña)) {
+                usuarioAutenticado = u;
+                break;
+            }
+        }
+
+        if (usuarioAutenticado == null) {
+            System.out.println("Credenciales incorrectas. Saliendo del sistema...");
+            return;
+        }
+
+        System.out.println("\nUsuario autentificado correctamente.");
+
+        // Polimorfismo y Downcasting 
+        if (usuarioAutenticado instanceof Aficionado) {
+            System.out.println("Rol detectado: AFICIONADO\n");
+            Aficionado aficionado = (Aficionado) usuarioAutenticado;
+
+            System.out.println("Bievenido/a" + aficionado.getNombres() + " " + aficionado.getApellidos() + "\n");
+            System.out.println("Celular registrado: " + aficionado.getCelular());
+            System.out.println("¿Este número de celular es correcto? (S/N)");
+            String respuesta = sc.nextLine();
+
+            if (respuesta.equalsIgnoreCase("S")) {
+                System.out.print("Identidad confirmada. ");
+            } else {
+                System.out.println("Verificacion fallida.");
+                System.out.println("Por motivos de seguridad se cerrará la sesión.");
+                System.out.println("Saliendo del sistema...\n");
+
+            }
+        } else if (usuarioAutenticado instanceof Organizador) {
+            System.out.println("Rol detectado: ORGANIZADOR\n");
+
+            Organizador organizador = (Organizador) usuarioAutenticado;
+
+            System.out.println("Bievenido/a" + organizador.getNombres() + " " + organizador.getApellidos() + "\n");
+            System.out.println("Empresa registrada: " + organizador.getEmpresa());
+            System.out.println("\n¿Esta empresa es correcta? (S/N)");
+            String respuesta = sc.nextLine();
+
+            if (respuesta.equalsIgnoreCase("S")) {
+                System.out.print("Identidad confirmada. \n");
+            } else {
+                System.out.println("Verificacion fallida.");
+                System.out.println("Por motivos de seguridad se cerrará la sesión.");
+                System.out.println("Saliendo del sistema...\n");
+            }
+        }
     }
 
     //Método notificar de las entradas para aficionados

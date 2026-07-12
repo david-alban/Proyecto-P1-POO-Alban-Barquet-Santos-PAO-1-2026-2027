@@ -5,8 +5,5 @@ public class Main {
         
         Sistema sistema = new Sistema();
         sistema.pruebaCargarDatos(); 
-        sistema.cargarCompras();
-        System.out.println("\n\n");
-        sistema.consultarKits();
     }
 }
