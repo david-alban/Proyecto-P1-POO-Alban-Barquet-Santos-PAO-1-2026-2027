@@ -281,7 +281,7 @@ public class Sistema {
                         Kit kitSeleccionado = null;
 
                         for (Kit k : kits){
-                            if(k.getCodigo().equals(kitSeleccionado)){
+                            if(k.getCodigo().equals(codeKit)){
                                 kitSeleccionado = k;
                                 break;
                             }
