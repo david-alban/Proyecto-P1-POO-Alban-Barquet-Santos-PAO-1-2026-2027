@@ -18,8 +18,7 @@ public class Organizador extends Usuario {
 
     // Sobreescritura del método consultarEntradas
     @Override
-    public void consultarEntradas(Sistema sis) {
-        ArrayList<Compra> compras = sis.getCompras();
+    public void consultarEntradas(ArrayList<Compra> compras) {
         if (compras.size() == 0) {
             System.out.println("No hay compras registradas en el sistema.");
         } else {
@@ -49,8 +48,7 @@ public class Organizador extends Usuario {
     }
 
     // Método generar reporte
-    public void generarReporte(Sistema sis) {
-        ArrayList<Compra> compras = sis.getCompras();
+    public void generarReporte(ArrayList<Compra> compras) {
         int totalCompras = 0;
         int comprasKit = 0;
         int comprasEntrada = 0;

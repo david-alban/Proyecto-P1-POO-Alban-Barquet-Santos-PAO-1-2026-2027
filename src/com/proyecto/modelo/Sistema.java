@@ -179,17 +179,17 @@ public class Sistema {
                 String eleccion = sc.nextLine();
                 switch (eleccion) {
                     case "1": // consultar partidos
-                        this.consultarPartidos();
+                        userLogeado.consultarPartidos(partidos);
                         break;
                     case "2": // comprar entrada
 
-                        System.out.println("\n---Comrpar Entrada---");
+                        System.out.println("\n---Comprar Entrada---");
 
-                        this.consultarPartidos();
+                        userLogeado.consultarPartidos(partidos);
 
-                        System.out.println("INgrese el codigo del partido que desea comprar: ");
+                        System.out.println("Ingrese el codigo del partido que desea comprar: ");
 
-                        // 1 INgresar codigo
+                        // 1 Ingresar código
 
                         String codePartido = sc.nextLine();
 
@@ -250,7 +250,7 @@ public class Sistema {
                         System.out.println("Total a pagar: "+ nuevaCompra.getValorPagado());
                         
                         // 6  ingresar numero de tarjeta
-                        System.out.println("Ingrese el numerod e su tarjeta: ");
+                        System.out.println("Ingrese el numero de su tarjeta: ");
                         String tarjeta = sc.nextLine();
 
                         // 7 simular pago exitoso
@@ -273,7 +273,7 @@ public class Sistema {
                         break;
                     case "3": // comprar kit de entradas
                         System.out.println("\n--- Comprar KIT de Entradas---");
-                        this.consultarKits();
+                        userLogeado.consultarKits(kits);
 
                         System.out.println("Ingrese el codigo del kit que desea comprar: ");
                         String codeKit = sc.nextLine();
@@ -309,8 +309,8 @@ public class Sistema {
                         this.notificar(((Aficionado)userLogeado), nuevaCompraKit, kitSeleccionado);
 
                         break;
-                    case "4": // consultar entrads compradas
-                        ((Aficionado)userLogeado).consultarEntradas(this);
+                    case "4": // consultar entradas compradas
+                        ((Aficionado)userLogeado).consultarEntradas(compras);
                         mientras = false;
                         break;
                     case "5":
@@ -492,50 +492,5 @@ public class Sistema {
     public void setCompras(ArrayList<Compra> compras) {
         this.compras = compras;
     }
-
-    // Método consultar partidos
-    public void consultarPartidos() {
-        if (partidos.isEmpty()) {
-            System.out.println("No hay partidos registrados en el sistema.");
-            return;
-        }
-
-        System.out.println("Partidos encontrados: \n");
-
-        int i = 1;
-        for (Partido partido : partidos) {
-            if (partido != null) {
-                System.out.print(i + ". ");
-                System.out.println(partido);
-                System.out.println("\n-----------------------------------------\n\n");
-                i++;
-            }
-        }
-    }
-
-    public void consultarKits() {
-        if (partidos.isEmpty()) {
-            System.out.println("No hay kits cargados en el sistema.");
-            return;
-        }
-
-        System.out.println("Kits encontrados: \n");
-
-        int i = 1;
-        for (Kit kit : kits) {
-            if (kit != null) {
-                System.out.print(i + ". ");
-                System.out.println(kit);
-                System.out.println("\n-----------------------------------------\n\n");
-                i++;
-            }
-        }
-    }
-
-    
-        
-
-
-
 
 }

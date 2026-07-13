@@ -1,5 +1,7 @@
 package com.proyecto.modelo;
 
+import java.util.ArrayList;
+
 public abstract class Usuario {
 
     protected String codigoUnico;
@@ -11,7 +13,7 @@ public abstract class Usuario {
     protected String correo;
     protected Rol rol;
 
-    // Constructor del método Usuario 
+    // Constructor del método Usuario
     public Usuario(String codigoUnico, String cedula, String nombres, String apellidos, String usuario,
             String contraseña, String correo, Rol rol) {
         this.codigoUnico = codigoUnico;
@@ -40,8 +42,47 @@ public abstract class Usuario {
     // Método toString para mostrar la información del Usuario
     @Override
     public String toString() {
-        return "Nombre: " + nombre + " " + apellido + " | Cédula: " + cedula + 
-               " | Correo: " + correo + " | Rol: " + rol;
+        return "Nombre: " + nombre + " " + apellido + " | Cédula: " + cedula +
+                " | Correo: " + correo + " | Rol: " + rol;
+    }
+
+    // Método consultar partidos
+    public void consultarPartidos(ArrayList<Partido> partidos) {
+        if (partidos.isEmpty()) {
+            System.out.println("No hay partidos registrados en el sistema.");
+            return;
+        }
+
+        System.out.println("Partidos encontrados: \n");
+
+        int i = 1;
+        for (Partido partido : partidos) {
+            if (partido != null) {
+                System.out.print(i + ". ");
+                System.out.println(partido);
+                System.out.println("\n-----------------------------------------\n\n");
+                i++;
+            }
+        }
+    }
+
+    public void consultarKits(ArrayList<Kit> kits) {
+        if (kits.isEmpty()) {
+            System.out.println("No hay kits cargados en el sistema.");
+            return;
+        }
+
+        System.out.println("Kits encontrados: \n");
+
+        int i = 1;
+        for (Kit kit : kits) {
+            if (kit != null) {
+                System.out.print(i + ". ");
+                System.out.println(kit);
+                System.out.println("\n-----------------------------------------\n\n");
+                i++;
+            }
+        }
     }
 
     // Getters/Setters
@@ -110,5 +151,5 @@ public abstract class Usuario {
     }
 
     // Clase abstracta consultarEntradas
-    protected abstract void consultarEntradas(Sistema sis);
+    protected abstract void consultarEntradas(ArrayList<Compra> compras);
 }
