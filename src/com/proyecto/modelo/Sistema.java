@@ -306,7 +306,7 @@ public class Sistema {
                         System.out.println("pago exitoso");
 
                         this.registrarCompra(nuevaCompraKit);
-                        this.notificar(null, nuevaCompraKit, kitSeleccionado);
+                        this.notificar(((Aficionado)userLogeado), nuevaCompraKit, kitSeleccionado);
 
                         break;
                     case "4":
