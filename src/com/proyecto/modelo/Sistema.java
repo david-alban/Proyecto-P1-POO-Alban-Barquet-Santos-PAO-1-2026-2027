@@ -309,10 +309,13 @@ public class Sistema {
                         this.notificar(((Aficionado)userLogeado), nuevaCompraKit, kitSeleccionado);
 
                         break;
-                    case "4":
-                        this.consultarPartidos();
+                    case "4": // consultar entrads compradas
+                        ((Aficionado)userLogeado).consultarEntradas(this);
+                        mientras = false;
                         break;
                     case "5":
+                        System.out.println("Saliendo del menu");
+                        mientras = false;
                         break;
                 
                     default:
