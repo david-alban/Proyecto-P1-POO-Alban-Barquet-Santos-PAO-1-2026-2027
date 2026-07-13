@@ -34,8 +34,7 @@ public class Aficionado extends Usuario {
 
     // Sobreescritura del método consultarEntradas
     @Override
-    public void consultarEntradas(Sistema sis) {
-        ArrayList<Compra> compras = sis.getCompras();
+    public void consultarEntradas(ArrayList<Compra> compras) {
         ArrayList<Compra> comprasEncontradas = new ArrayList<>();
         for(Compra compra:compras){
             if(codigoUnico.equals(compra.getCodigoAficionado())){
