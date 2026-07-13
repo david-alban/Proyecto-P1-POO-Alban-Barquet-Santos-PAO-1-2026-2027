@@ -150,10 +150,59 @@ public class Sistema {
     }
 
     public void mostrarMenu() {
+        Scanner sc = new Scanner(System.in);
+
+        this.cargarUsuario();
+        this.cargarCompras();
+        this.cargarKits();
+        this.cargarPartidos();
+
+        Usuario userLogeado = this.iniciarSesion();
+
+        if (userLogeado == null){
+            return;
+        }
+
+        boolean mientras = true;
+
+        while (mientras){
+            if (userLogeado instanceof Aficionado){
+                System.out.println("\n --- Menu Aficionado ---");
+                System.out.println("Los AFICIONADOS tienen el menú de opciones:\r\n" + //
+                                        "1. Consultar partidos\r\n" + //
+                                        "2. Comprar entrada\r\n" + //
+                                        "3. Comprar kit de entradas\r\n" + //
+                                        "4. Consultar entradas\r\n" + //
+                                        "5. Salir\r\n" +
+                                        "Seleccione una opcion: ");
+            
+                String eleccion = sc.nextLine();
+                switch (eleccion) {
+                    case "1":
+                        this.consultarPartidos();
+                        break;
+                    case "2":
+                        this.consultarPartidos();
+                        break;
+                    case "3":
+                        this.consultarPartidos();
+                        break;
+                    case "4":
+                        this.consultarPartidos();
+                        break;
+                    case "5":
+                        this.consultarPartidos();
+                        break;
+                
+                    default:
+                        break;
+                }
+            } 
+        }
 
     }
 
-    public void iniciarSesion() {
+    public Usuario iniciarSesion() {
         Scanner sc = new Scanner(System.in);
 
         System.out.println("\n=== INICIAR SESIÓN ===");
@@ -173,7 +222,7 @@ public class Sistema {
 
         if (usuarioAutenticado == null) {
             System.out.println("Credenciales incorrectas. Saliendo del sistema...");
-            return;
+            return null;
         }
 
         System.out.println("\nUsuario autentificado correctamente.");
@@ -190,10 +239,12 @@ public class Sistema {
 
             if (respuesta.equalsIgnoreCase("S")) {
                 System.out.print("Identidad confirmada. ");
+                return usuarioAutenticado;
             } else {
                 System.out.println("Verificacion fallida.");
                 System.out.println("Por motivos de seguridad se cerrará la sesión.");
                 System.out.println("Saliendo del sistema...\n");
+                return null;
 
             }
         } else if (usuarioAutenticado instanceof Organizador) {
@@ -208,12 +259,15 @@ public class Sistema {
 
             if (respuesta.equalsIgnoreCase("S")) {
                 System.out.print("Identidad confirmada. \n");
+                return usuarioAutenticado;
             } else {
                 System.out.println("Verificacion fallida.");
                 System.out.println("Por motivos de seguridad se cerrará la sesión.");
                 System.out.println("Saliendo del sistema...\n");
+                return null;
             }
         }
+        return null;
     }
 
     //Método notificar de las entradas para aficionados
