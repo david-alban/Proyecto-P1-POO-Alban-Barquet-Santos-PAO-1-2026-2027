@@ -150,10 +150,188 @@ public class Sistema {
     }
 
     public void mostrarMenu() {
+        Scanner sc = new Scanner(System.in);
+
+        this.cargarUsuario();
+        this.cargarCompras();
+        this.cargarKits();
+        this.cargarPartidos();
+
+        Usuario userLogeado = this.iniciarSesion();
+
+        if (userLogeado == null){
+            return;
+        }
+
+        boolean mientras = true;
+
+        while (mientras){
+            if (userLogeado instanceof Aficionado){
+                System.out.println("\n --- Menu Aficionado ---");
+                System.out.println("Los AFICIONADOS tienen el menú de opciones:\r\n" + //
+                                        "1. Consultar partidos\r\n" + //
+                                        "2. Comprar entrada\r\n" + //
+                                        "3. Comprar kit de entradas\r\n" + //
+                                        "4. Consultar entradas\r\n" + //
+                                        "5. Salir\r\n" +
+                                        "Seleccione una opcion: ");
+            
+                String eleccion = sc.nextLine();
+                switch (eleccion) {
+                    case "1": // consultar partidos
+                        this.consultarPartidos();
+                        break;
+                    case "2": // comprar entrada
+
+                        System.out.println("\n---Comrpar Entrada---");
+
+                        this.consultarPartidos();
+
+                        System.out.println("INgrese el codigo del partido que desea comprar: ");
+
+                        // 1 INgresar codigo
+
+                        String codePartido = sc.nextLine();
+
+                        Partido pSeleccionado = null;
+                        for (Partido p : partidos){
+                            if(p.getCodigo().equals(codePartido)){
+                                pSeleccionado = p;
+                                break;
+                            } 
+     
+                        }
+
+                        if (pSeleccionado == null) {
+                                System.out.println("Código de partido no encontrado. Cancelando compra...");
+                                break;
+                            }
+
+                        // 2 Seleccionar zona
+                        System.out.println("Seleccione la zona (GENERAL / PREFERENCIAL / VIP");
+                        String zonaE = sc.nextLine();
+                        Zona zonaSelec = null;
+                        if (zonaE.equalsIgnoreCase("VIP")){
+                            zonaSelec = Zona.VIP;
+                        }
+                        if (zonaE.equalsIgnoreCase("GENERAL")){
+                            zonaSelec = Zona.General;
+                        }
+                        if (zonaE.equalsIgnoreCase("PREFERENCIAL")){
+                            zonaSelec = Zona.Preferencial;
+                        }
+
+                        //3 Validar entradas
+
+                        boolean validarStock = false;
+
+                        if ((zonaSelec == Zona.VIP) &&  (pSeleccionado.getStockVIP()>0)){
+                            validarStock = true;
+                        } else if ((zonaSelec == Zona.Preferencial) &&  (pSeleccionado.getStockPreferencial()>0)){
+                            validarStock = true;
+                        } else if ((zonaSelec == Zona.General) &&  (pSeleccionado.getStockGeneral()>0)){
+                            validarStock = true;
+                        } 
+
+                        if (validarStock == false){
+                            System.out.println("Lo sentimos, no hay stock disponible, se cancelo su compra.");
+                            break;
+                        }
+
+                        // 4 Ingresar cantidad de entradas
+
+                        System.out.println("Ingrese la cantidad de entradas: ");
+                        int cantidadEntradas = sc.nextInt();
+                        sc.nextLine();
+
+                        // 5 mostrar total a pagar
+                        // downcasting
+                        Compra nuevaCompra = ((Aficionado)userLogeado).comprar(pSeleccionado, zonaSelec, cantidadEntradas);
+                        System.out.println("Total a pagar: "+ nuevaCompra.getValorPagado());
+                        
+                        // 6  ingresar numero de tarjeta
+                        System.out.println("Ingrese el numerod e su tarjeta: ");
+                        String tarjeta = sc.nextLine();
+
+                        // 7 simular pago exitoso
+                        System.out.println("Procesando pago");
+                        System.out.println("Pago exitoso!");
+                        
+                        
+
+                        this.registrarCompra(nuevaCompra);
+                        this.notificar(((Aficionado)userLogeado), nuevaCompra); //downcasting
+
+                        if ((zonaSelec == Zona.VIP)){
+                            pSeleccionado.setStockVIP(pSeleccionado.getStockVIP() - cantidadEntradas);
+                        } else if ((zonaSelec == Zona.Preferencial)){
+                            pSeleccionado.setStockPreferencial(pSeleccionado.getStockPreferencial() - cantidadEntradas);
+                        } else if ((zonaSelec == Zona.General)){
+                            pSeleccionado.setStockGeneral(pSeleccionado.getStockGeneral() - cantidadEntradas);
+                        } 
+
+                        break;
+                    case "3": // comprar kit de entradas
+                        System.out.println("\n--- Comprar KIT de Entradas---");
+                        this.consultarKits();
+
+                        System.out.println("Ingrese el codigo del kit que desea comprar: ");
+                        String codeKit = sc.nextLine();
+
+                        Kit kitSeleccionado = null;
+
+                        for (Kit k : kits){
+                            if(k.getCodigo().equals(codeKit)){
+                                kitSeleccionado = k;
+                                break;
+                            }
+                        }
+
+                        if (kitSeleccionado==null){
+                            System.out.println("Lo siento el codigo ingresado es incorrecto");
+                            break;
+                        }
+                        
+                        System.out.println("Ingrese la cantidad de kits que desea: ");
+                        int cantidadKits = sc.nextInt();
+                        sc.nextLine();
+
+                        Compra nuevaCompraKit = ((Aficionado)userLogeado).comprar(kitSeleccionado, cantidadKits);
+                        System.out.println("Total a pagar: "+ nuevaCompraKit.getValorPagado());
+
+                        System.out.println("Ingrese el numero de su tarjeta");
+                        String tarjetaKit = sc.nextLine();
+
+                        System.out.println("Procesando pago...");
+                        System.out.println("pago exitoso");
+
+                        this.registrarCompra(nuevaCompraKit);
+                        this.notificar(((Aficionado)userLogeado), nuevaCompraKit, kitSeleccionado);
+
+                        break;
+                    case "4": // consultar entrads compradas
+                        ((Aficionado)userLogeado).consultarEntradas(this);
+                        mientras = false;
+                        break;
+                    case "5":
+                        System.out.println("Saliendo del menu");
+                        mientras = false;
+                        break;
+                
+                    default:
+                        break;
+                }
+            } 
+            if (userLogeado instanceof Organizador){
+                
+            }
+        }
+            
+        
 
     }
 
-    public void iniciarSesion() {
+    public Usuario iniciarSesion() {
         Scanner sc = new Scanner(System.in);
 
         System.out.println("\n=== INICIAR SESIÓN ===");
@@ -173,7 +351,7 @@ public class Sistema {
 
         if (usuarioAutenticado == null) {
             System.out.println("Credenciales incorrectas. Saliendo del sistema...");
-            return;
+            return null;
         }
 
         System.out.println("\nUsuario autentificado correctamente.");
@@ -190,10 +368,12 @@ public class Sistema {
 
             if (respuesta.equalsIgnoreCase("S")) {
                 System.out.print("Identidad confirmada. ");
+                return usuarioAutenticado;
             } else {
                 System.out.println("Verificacion fallida.");
                 System.out.println("Por motivos de seguridad se cerrará la sesión.");
                 System.out.println("Saliendo del sistema...\n");
+                return null;
 
             }
         } else if (usuarioAutenticado instanceof Organizador) {
@@ -208,12 +388,15 @@ public class Sistema {
 
             if (respuesta.equalsIgnoreCase("S")) {
                 System.out.print("Identidad confirmada. \n");
+                return usuarioAutenticado;
             } else {
                 System.out.println("Verificacion fallida.");
                 System.out.println("Por motivos de seguridad se cerrará la sesión.");
                 System.out.println("Saliendo del sistema...\n");
+                return null;
             }
         }
+        return null;
     }
 
     //Método notificar de las entradas para aficionados
