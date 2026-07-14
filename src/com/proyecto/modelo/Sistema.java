@@ -5,6 +5,12 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * Clase principal que gestiona el flujo del sistema, la carga de datos
+ * desde archivos, el inicio de sesión de usuarios y el procesamiento de compras.
+ * 
+ * @author Estefano Barquet
+ */
 public class Sistema {
 
     private ArrayList<Usuario> usuarios;
@@ -12,8 +18,13 @@ public class Sistema {
     private ArrayList<Kit> kits;
     private ArrayList<Compra> compras;
 
-    // Constructor del método Sistema
+    
 
+    
+    /**
+     * Constructor de la clase Sistema.
+     * Inicializa las listas de usuarios, compras, partidos y kits.
+     */
     public Sistema() {
         this.usuarios = new ArrayList<>();
         this.compras = new ArrayList<>();
@@ -22,6 +33,14 @@ public class Sistema {
 
     }
 
+    
+    /** 
+     * Busca el indice de un registro dentro de las lineas de texto qeu empiecen con un codigo identificador especifico
+     * se usa para sabe que indice corresponde a que usuraio en el usuario.txt y en el aficionado.txt o organizador.txt
+     * @param lista lista de strings obtenidas de un archivo
+     * @param codigo codigo de referncia a buscar
+     * @return int indice del codigo encontrado, o -1 si no existe
+     */
     public int buscarIndiceRespectivo(ArrayList<String> lista, String codigo) {
         for (int i = 0; i < lista.size(); i++) {
             String l = lista.get(i);
@@ -31,8 +50,13 @@ public class Sistema {
         }
         return -1;
     }
-
+    
     // terminado método complementario para cargar usuarios
+
+    /**
+     * Carga y procesa los datos de los usuarios desde los archivos de texto respectivos.
+     * Instancia objetos de tipo Aficionado u Organizador según el rol especificado.
+     */
     public void cargarUsuario() {
         ArrayList<String> lineas = com.proyecto.util.ManejoArchivos.LeeFichero("recursos/usuarios.txt");
         ArrayList<String> lineasA = com.proyecto.util.ManejoArchivos.LeeFichero("recursos/aficionados.txt");
@@ -73,9 +97,9 @@ public class Sistema {
 
     // terminado cargarUsuarios
 
-    // me estaba botando el error Unhandled exception type ParseException
-    // https://www.w3schools.com/java/java_try_catch.asp
-    // https://stackoverflow.com/questions/11665195/unhandled-exception-type-parseexception
+    /**
+     * Carga los partidos de fútbol registrados en el archivo de texto en el sistema.
+     */
     public void cargarPartidos() {
         ArrayList<String> lineas = com.proyecto.util.ManejoArchivos.LeeFichero("recursos/partidos.txt");
         for (String linea : lineas) {
@@ -89,7 +113,9 @@ public class Sistema {
         }
     }
 
-    // terminado cargarPartidos
+    /**
+     * Carga y construye la lista de kits de entradas disponibles desde el archivo de texto.
+     */
     public void cargarKits() {
         ArrayList<String> lineas = com.proyecto.util.ManejoArchivos.LeeFichero("recursos/kits.txt");
         for (String linea : lineas) {
@@ -99,7 +125,10 @@ public class Sistema {
             }
         }
     }
-
+    /**
+     * Carga las transacciones de compras guardadas en el sistema.
+     * Si el archivo no existe lo crea.
+     */
     public void cargarCompras() {
         if (ManejoArchivos.existeArchivo("recursos/compras.txt")) {
             ArrayList<String> lineas = com.proyecto.util.ManejoArchivos.LeeFichero("recursos/compras.txt");
@@ -118,6 +147,12 @@ public class Sistema {
         }
     }
 
+    /** 
+     * Registra una nueva transacción de compra en el archivo compras.txt
+     * y actualiza la lista en memoria del sistema.
+     * 
+     * @param compra Objeto de tipo Compra con la información detallada de la transacción.
+     */
     public void registrarCompra(Compra compra) {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         String fechaFormateada = sdf.format(compra.getFechaCompra());
@@ -128,6 +163,10 @@ public class Sistema {
         compras.add(compra);
     }
 
+    /**
+     * Realiza una prueba rápida por consola mostrando todos los datos iniciales 
+     * cargados (usuarios, partidos y kits) para verificar la correcta lectura de archivos.
+     */
     public void pruebaCargarDatos() {
         this.cargarUsuario();
         this.cargarPartidos();
@@ -149,6 +188,12 @@ public class Sistema {
         }
     }
 
+
+    /**
+     * maneja la interaccion principal del usuario con el sistema y 
+     * muestra el menú en consola de acuerdo 
+     * al rol con el que ingresa el usuario logeado.
+     */
     public void mostrarMenu() {
         Scanner sc = new Scanner(System.in);
         this.cargarUsuario();
@@ -319,6 +364,8 @@ public class Sistema {
                             break;
                     }
                 }
+
+// Hasta aqui estfeano
                 if (userLogeado instanceof Organizador) {
                     System.out.println("\n --- Menu Organizador ---");
                     System.out.println("1. Consultar partidos\r\n" + //
@@ -353,6 +400,13 @@ public class Sistema {
         }
     }
 
+    /** 
+     * Gestiona el proceso de autenticación de credenciales solicitando el usuario
+     * y contraseña por consola. Adicionalmente, realiza una validación de seguridad extra de datos según el rol.
+     * 
+     * @param sc Objeto Scanner para la captura del ingreso de datos.
+     * @return El objeto de tipo Usuario autenticado, o null si la autenticación falla.
+     */
     public Usuario iniciarSesion(Scanner sc) {
 
         System.out.println("\n=== INICIAR SESIÓN ===");
@@ -420,7 +474,13 @@ public class Sistema {
         return null;
     }
 
-    // Método notificar de las entradas para aficionados
+   /** 
+     * Simula el envío de una notificación por correo electrónico a un aficionado
+     * tras la compra exitosa de una entrada individual para un partido de fútbol.
+     * 
+     * @param aficionado      Aficionado que adquiere las entradas.
+     * @param compraRealizada Datos de la compra.
+     */
     public void notificar(Aficionado aficionado, Compra compraRealizada) {
         // Se busca el codigo referencial de acuerdo al partido que se compró
         Partido partidoComprado = null;
@@ -452,7 +512,14 @@ public class Sistema {
         System.out.println("Gracias por adquirir sus entradas para el Mundial.\n");
     }
 
-    // Método notificar de los kits para aficionados
+    /** 
+     * Simula el envío de una notificación por correo electrónico a un aficionado
+     * tras la compra exitosa de un Kit completo de entradas.
+     * 
+     * @param aficionado      Aficionado destinatario del correo.
+     * @param compraRealizada Estructura con el monto pagado y cantidades.
+     * @param kitAdquirido    Detalle del objeto Kit adquirido en la transacción.
+     */
     public void notificar(Aficionado aficionado, Compra compraRealizada, Kit kitAdquirido) {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
@@ -471,7 +538,13 @@ public class Sistema {
         System.out.println("Valor total pagado: $" + compraRealizada.getValorPagado());
     }
 
-    // Método notificar de los reportes para organizadores
+    /** 
+     * Simula el envío de una alerta administrativa por correo a un organizador
+     * confirmando que un reporte fue generado con éxito.
+     * 
+     * @param organizador  Organizador que solicitó el reporte administrativo.
+     * @param datosReporte Información textual del resumen generado.
+     */
     public void notificar(Organizador organizador, String datosReporte) {
         System.out.println("\n--- ENVIANDO NOTIFICIACIÓN ---");
         System.out.println("De correoSistema");
@@ -483,34 +556,58 @@ public class Sistema {
         System.out.println(datosReporte);
     }
 
+    /** 
+     * @return ArrayList<Usuario>
+     */
     public ArrayList<Usuario> getUsuarios() {
         return usuarios;
     }
 
+    /** 
+     * @param usuarios
+     */
     public void setUsuarios(ArrayList<Usuario> usuarios) {
         this.usuarios = usuarios;
     }
 
+    /** 
+     * @return ArrayList<Partido>
+     */
     public ArrayList<Partido> getPartidos() {
         return partidos;
     }
 
+    /** 
+     * @param partidos
+     */
     public void setPartidos(ArrayList<Partido> partidos) {
         this.partidos = partidos;
     }
 
+    /** 
+     * @return ArrayList<Kit>
+     */
     public ArrayList<Kit> getKits() {
         return kits;
     }
 
+    /** 
+     * @param kits
+     */
     public void setKits(ArrayList<Kit> kits) {
         this.kits = kits;
     }
 
+    /** 
+     * @return ArrayList<Compra>
+     */
     public ArrayList<Compra> getCompras() {
         return compras;
     }
 
+    /** 
+     * @param compras
+     */
     public void setCompras(ArrayList<Compra> compras) {
         this.compras = compras;
     }
