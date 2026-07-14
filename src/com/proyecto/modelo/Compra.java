@@ -31,7 +31,7 @@ public class Compra {
 
     public Compra(String linea) throws ParseException {
         String[] datos = linea.split("\\|");
-        this.codigoCompra = Integer.parseInt(datos[0]);
+        this.codigoCompra = nextCodigo;
         this.tipo = datos[1];
         this.codigoReferencial = datos[2];
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
