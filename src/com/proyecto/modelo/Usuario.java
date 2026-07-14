@@ -4,16 +4,57 @@ import java.util.ArrayList;
 
 public abstract class Usuario {
 
+    /**
+     * Código único del usuario.
+     */
     protected String codigoUnico;
+
+    /**
+     * Numero de cédula del usuario.
+     */
     protected String cedula;
+
+    /**
+     * Nombre del usuario.
+     */
     protected String nombre;
+
+    /**
+     * Apellido del usuario.
+     */
     protected String apellido;
+
+    /**
+     * Nombre de usuario.
+     */
     protected String usuario;
+
+    /**
+     * Contraseña de la cuenta del usuario.
+     */
     protected String contraseña;
+
+    /**
+     * Correo vinculado a la cuenta del usuario.
+     */
     protected String correo;
+
+    /**
+     * Identificador del Rol de usuario.
+     */
     protected Rol rol;
 
-    // Constructor del método Usuario
+    /**
+     * Constructor de la clase abstracta usuario que recibe parametros.
+     * @param codigoUnico Código identificador del usuario.
+     * @param cedula Numero de cédula del usuario 
+     * @param nombres Nombre del usuario.
+     * @param apellidos Apellido del usuario.
+     * @param usuario Nombre de usuario de la cuenta.
+     * @param contraseña Contraseña de la cuenta.
+     * @param correo Correo vinculada a la cuenta.
+     * @param rol Rol asignado (usando el enum {@link Rol})
+     */
     public Usuario(String codigoUnico, String cedula, String nombres, String apellidos, String usuario,
             String contraseña, String correo, Rol rol) {
         this.codigoUnico = codigoUnico;
@@ -26,7 +67,10 @@ public abstract class Usuario {
         this.rol = rol;
     }
 
-    // Constructor del método Usuario a partir de una línea de texto
+    /**
+     * Constructor que recibe un string con el formato de una linea extraída de usuarios.txt.
+     * @param lineaString Linea extraída con datos separados por '|'.
+     */
     public Usuario(String lineaString) {
         String[] datos = lineaString.split("\\|");
         this.codigoUnico = datos[0];
@@ -39,14 +83,19 @@ public abstract class Usuario {
         this.rol = Rol.valueOf(datos[7]);
     }
 
-    // Método toString para mostrar la información del Usuario
+    /**
+     * Sobrescritura del método toString.
+     */
     @Override
     public String toString() {
         return "Nombre: " + nombre + " " + apellido + " | Cédula: " + cedula +
                 " | Correo: " + correo + " | Rol: " + rol;
     }
 
-    // Método consultar partidos
+    /**
+     * Método que recibe una lista de partidos para mostrárselos al usuario.
+     * @param partidos Lista de objetos {@link Partido} cargados en el sistema.
+     */
     public void consultarPartidos(ArrayList<Partido> partidos) {
         if (partidos.isEmpty()) {
             System.out.println("No hay partidos registrados en el sistema.");
@@ -66,6 +115,10 @@ public abstract class Usuario {
         }
     }
 
+    /**
+     * Método que recibe una lista de kits para mostrárselos al usuario.
+     * @param kits Lista de objetos {@link Kit} cargados en el sistema.
+     */
     public void consultarKits(ArrayList<Kit> kits) {
         if (kits.isEmpty()) {
             System.out.println("No hay kits cargados en el sistema.");
@@ -85,7 +138,6 @@ public abstract class Usuario {
         }
     }
 
-    // Getters/Setters
     public String getCodigoUnico() {
         return codigoUnico;
     }
@@ -150,6 +202,9 @@ public abstract class Usuario {
         this.rol = rol;
     }
 
-    // Clase abstracta consultarEntradas
+    /**
+     * Método abstracto que muestra al usuario las entradas que ha adquirido.
+     * @param compras Lista de objetos {@link Compra} cargados en el sistema.
+     */
     protected abstract void consultarEntradas(ArrayList<Compra> compras);
 }
