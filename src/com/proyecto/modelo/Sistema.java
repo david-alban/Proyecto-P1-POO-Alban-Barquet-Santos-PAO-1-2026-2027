@@ -17,8 +17,9 @@ public class Sistema {
     public Sistema() {
         this.usuarios = new ArrayList<>();
         this.compras = new ArrayList<>();
-        this.kits = new ArrayList<>();
         this.partidos = new ArrayList<>();
+        this.kits = new ArrayList<>();
+
     }
 
     public int buscarIndiceRespectivo(ArrayList<String> lista, String codigo) {
@@ -94,7 +95,7 @@ public class Sistema {
         for (String linea : lineas) {
             if ((linea != null) && (!linea.trim().isEmpty())) {
 
-                this.kits.add(new Kit(linea,partidos));
+                this.kits.add(new Kit(linea, partidos));
             }
         }
     }
@@ -127,7 +128,6 @@ public class Sistema {
         compras.add(compra);
     }
 
-
     public void pruebaCargarDatos() {
         this.cargarUsuario();
         this.cargarPartidos();
@@ -154,200 +154,201 @@ public class Sistema {
 
         this.cargarUsuario();
         this.cargarCompras();
-        this.cargarKits();
         this.cargarPartidos();
+        this.cargarKits();
+        while (true) {
+            Usuario userLogeado = this.iniciarSesion();
 
-        Usuario userLogeado = this.iniciarSesion();
+            if (userLogeado == null) {
+                return;
+            }
 
-        if (userLogeado == null){
-            return;
-        }
+            boolean mientras = true;
 
-        boolean mientras = true;
+            while (mientras) {
+                if (userLogeado instanceof Aficionado) {
+                    System.out.println("\n --- Menu Aficionado ---");
+                    System.out.println("1. Consultar partidos\r\n" + //
+                            "2. Comprar entrada\r\n" + //
+                            "3. Comprar kit de entradas\r\n" + //
+                            "4. Consultar entradas\r\n" + //
+                            "5. Salir\r\n" +
+                            "Seleccione una opcion: ");
 
-        while (mientras){
-            if (userLogeado instanceof Aficionado){
-                System.out.println("\n --- Menu Aficionado ---");
-                System.out.println("1. Consultar partidos\r\n" + //
-                                        "2. Comprar entrada\r\n" + //
-                                        "3. Comprar kit de entradas\r\n" + //
-                                        "4. Consultar entradas\r\n" + //
-                                        "5. Salir\r\n" +
-                                        "Seleccione una opcion: ");
-            
-                String eleccion = sc.nextLine();
-                switch (eleccion) {
-                    case "1": // consultar partidos
-                        userLogeado.consultarPartidos(partidos);
-                        break;
-                    case "2": // comprar entrada
+                    String eleccion = sc.nextLine();
+                    switch (eleccion) {
+                        case "1": // consultar partidos
+                            userLogeado.consultarPartidos(partidos);
+                            break;
+                        case "2": // comprar entrada
 
-                        System.out.println("\n---Comprar Entrada---");
+                            System.out.println("\n---Comprar Entrada---");
 
-                        userLogeado.consultarPartidos(partidos);
+                            userLogeado.consultarPartidos(partidos);
 
-                        System.out.println("Ingrese el codigo del partido que desea comprar: ");
+                            System.out.println("Ingrese el codigo del partido que desea comprar: ");
 
-                        // 1 Ingresar código
+                            // 1 Ingresar código
 
-                        String codePartido = sc.nextLine();
+                            String codePartido = sc.nextLine();
 
-                        Partido pSeleccionado = null;
-                        for (Partido p : partidos){
-                            if(p.getCodigo().equals(codePartido)){
-                                pSeleccionado = p;
-                                break;
-                            } 
-     
-                        }
+                            Partido pSeleccionado = null;
+                            for (Partido p : partidos) {
+                                if (p.getCodigo().equals(codePartido)) {
+                                    pSeleccionado = p;
+                                    break;
+                                }
 
-                        if (pSeleccionado == null) {
+                            }
+
+                            if (pSeleccionado == null) {
                                 System.out.println("Código de partido no encontrado. Cancelando compra...");
                                 break;
                             }
 
-                        // 2 Seleccionar zona
-                        System.out.println("Seleccione la zona (GENERAL / PREFERENCIAL / VIP");
-                        String zonaE = sc.nextLine();
-                        Zona zonaSelec = null;
-                        if (zonaE.equalsIgnoreCase("VIP")){
-                            zonaSelec = Zona.VIP;
-                        }
-                        if (zonaE.equalsIgnoreCase("GENERAL")){
-                            zonaSelec = Zona.General;
-                        }
-                        if (zonaE.equalsIgnoreCase("PREFERENCIAL")){
-                            zonaSelec = Zona.Preferencial;
-                        }
+                            // 2 Seleccionar zona
+                            System.out.println("Seleccione la zona (GENERAL / PREFERENCIAL / VIP");
+                            String zonaE = sc.nextLine();
+                            Zona zonaSelec = null;
+                            if (zonaE.equalsIgnoreCase("VIP")) {
+                                zonaSelec = Zona.VIP;
+                            }
+                            if (zonaE.equalsIgnoreCase("GENERAL")) {
+                                zonaSelec = Zona.General;
+                            }
+                            if (zonaE.equalsIgnoreCase("PREFERENCIAL")) {
+                                zonaSelec = Zona.Preferencial;
+                            }
 
-                        //3 Validar entradas
+                            // 3 Validar entradas
 
-                        boolean validarStock = false;
+                            boolean validarStock = false;
 
-                        if ((zonaSelec == Zona.VIP) &&  (pSeleccionado.getStockVIP()>0)){
-                            validarStock = true;
-                        } else if ((zonaSelec == Zona.Preferencial) &&  (pSeleccionado.getStockPreferencial()>0)){
-                            validarStock = true;
-                        } else if ((zonaSelec == Zona.General) &&  (pSeleccionado.getStockGeneral()>0)){
-                            validarStock = true;
-                        } 
+                            if ((zonaSelec == Zona.VIP) && (pSeleccionado.getStockVIP() > 0)) {
+                                validarStock = true;
+                            } else if ((zonaSelec == Zona.Preferencial) && (pSeleccionado.getStockPreferencial() > 0)) {
+                                validarStock = true;
+                            } else if ((zonaSelec == Zona.General) && (pSeleccionado.getStockGeneral() > 0)) {
+                                validarStock = true;
+                            }
 
-                        if (validarStock == false){
-                            System.out.println("Lo sentimos, no hay stock disponible, se cancelo su compra.");
-                            break;
-                        }
-
-                        // 4 Ingresar cantidad de entradas
-
-                        System.out.println("Ingrese la cantidad de entradas: ");
-                        int cantidadEntradas = sc.nextInt();
-                        sc.nextLine();
-
-                        // 5 mostrar total a pagar
-                        // downcasting
-                        Compra nuevaCompra = ((Aficionado)userLogeado).comprar(pSeleccionado, zonaSelec, cantidadEntradas);
-                        System.out.println("Total a pagar: "+ nuevaCompra.getValorPagado());
-                        
-                        // 6  ingresar numero de tarjeta
-                        System.out.println("Ingrese el numero de su tarjeta: ");
-                        String tarjeta = sc.nextLine();
-
-                        // 7 simular pago exitoso
-                        System.out.println("Procesando pago");
-                        System.out.println("Pago exitoso!");
-                        
-                        
-
-                        this.registrarCompra(nuevaCompra);
-                        this.notificar(((Aficionado)userLogeado), nuevaCompra); //downcasting
-
-                        if ((zonaSelec == Zona.VIP)){
-                            pSeleccionado.setStockVIP(pSeleccionado.getStockVIP() - cantidadEntradas);
-                        } else if ((zonaSelec == Zona.Preferencial)){
-                            pSeleccionado.setStockPreferencial(pSeleccionado.getStockPreferencial() - cantidadEntradas);
-                        } else if ((zonaSelec == Zona.General)){
-                            pSeleccionado.setStockGeneral(pSeleccionado.getStockGeneral() - cantidadEntradas);
-                        } 
-
-                        break;
-                    case "3": // comprar kit de entradas
-                        System.out.println("\n--- Comprar KIT de Entradas---");
-                        userLogeado.consultarKits(kits);
-
-                        System.out.println("Ingrese el codigo del kit que desea comprar: ");
-                        String codeKit = sc.nextLine();
-
-                        Kit kitSeleccionado = null;
-
-                        for (Kit k : kits){
-                            if(k.getCodigo().equals(codeKit)){
-                                kitSeleccionado = k;
+                            if (validarStock == false) {
+                                System.out.println("Lo sentimos, no hay stock disponible, se cancelo su compra.");
                                 break;
                             }
-                        }
 
-                        if (kitSeleccionado==null){
-                            System.out.println("Lo siento el codigo ingresado es incorrecto");
+                            // 4 Ingresar cantidad de entradas
+
+                            System.out.println("Ingrese la cantidad de entradas: ");
+                            int cantidadEntradas = sc.nextInt();
+                            sc.nextLine();
+
+                            // 5 mostrar total a pagar
+                            // downcasting
+                            Compra nuevaCompra = ((Aficionado) userLogeado).comprar(pSeleccionado, zonaSelec,
+                                    cantidadEntradas);
+                            System.out.println("Total a pagar: " + nuevaCompra.getValorPagado());
+
+                            // 6 ingresar numero de tarjeta
+                            System.out.println("Ingrese el numero de su tarjeta: ");
+                            String tarjeta = sc.nextLine();
+
+                            // 7 simular pago exitoso
+                            System.out.println("Procesando pago");
+                            System.out.println("Pago exitoso!");
+
+                            this.registrarCompra(nuevaCompra);
+                            this.notificar(((Aficionado) userLogeado), nuevaCompra); // downcasting
+
+                            if ((zonaSelec == Zona.VIP)) {
+                                pSeleccionado.setStockVIP(pSeleccionado.getStockVIP() - cantidadEntradas);
+                            } else if ((zonaSelec == Zona.Preferencial)) {
+                                pSeleccionado
+                                        .setStockPreferencial(pSeleccionado.getStockPreferencial() - cantidadEntradas);
+                            } else if ((zonaSelec == Zona.General)) {
+                                pSeleccionado.setStockGeneral(pSeleccionado.getStockGeneral() - cantidadEntradas);
+                            }
+
                             break;
-                        }
-                        
-                        System.out.println("Ingrese la cantidad de kits que desea: ");
-                        int cantidadKits = sc.nextInt();
-                        sc.nextLine();
+                        case "3": // comprar kit de entradas
+                            System.out.println("\n--- Comprar KIT de Entradas---");
+                            userLogeado.consultarKits(kits);
 
-                        Compra nuevaCompraKit = ((Aficionado)userLogeado).comprar(kitSeleccionado, cantidadKits);
-                        System.out.println("Total a pagar: "+ nuevaCompraKit.getValorPagado());
+                            System.out.println("Ingrese el codigo del kit que desea comprar: ");
+                            String codeKit = sc.nextLine();
 
-                        System.out.println("Ingrese el numero de su tarjeta");
-                        String tarjetaKit = sc.nextLine();
+                            Kit kitSeleccionado = null;
 
-                        System.out.println("Procesando pago...");
-                        System.out.println("pago exitoso");
+                            for (Kit k : kits) {
+                                if (k.getCodigo().equals(codeKit)) {
+                                    kitSeleccionado = k;
+                                    break;
+                                }
+                            }
 
-                        this.registrarCompra(nuevaCompraKit);
-                        this.notificar(((Aficionado)userLogeado), nuevaCompraKit, kitSeleccionado);
+                            if (kitSeleccionado == null) {
+                                System.out.println("Lo siento el codigo ingresado es incorrecto");
+                                break;
+                            }
 
-                        break;
-                    case "4": // consultar entradas compradas
-                        ((Aficionado)userLogeado).consultarEntradas(compras);
-                        mientras = false;
-                        break;
-                    case "5":
-                        System.out.println("Saliendo del menu");
-                        mientras = false;
-                        break;
-                
-                    default:
-                        break;
+                            System.out.println("Ingrese la cantidad de kits que desea: ");
+                            int cantidadKits = sc.nextInt();
+                            sc.nextLine();
+
+                            Compra nuevaCompraKit = ((Aficionado) userLogeado).comprar(kitSeleccionado, cantidadKits);
+                            System.out.println("Total a pagar: " + nuevaCompraKit.getValorPagado());
+
+                            System.out.println("Ingrese el numero de su tarjeta");
+                            String tarjetaKit = sc.nextLine();
+
+                            System.out.println("Procesando pago...");
+                            System.out.println("pago exitoso");
+
+                            this.registrarCompra(nuevaCompraKit);
+                            this.notificar(((Aficionado) userLogeado), nuevaCompraKit, kitSeleccionado);
+
+                            break;
+                        case "4": // consultar entradas compradas
+                            ((Aficionado) userLogeado).consultarEntradas(compras);
+                            break;
+                        case "5":
+                            System.out.println("Saliendo del menu");
+                            mientras = false;
+                            break;
+
+                        default:
+                            break;
+                    }
                 }
-            } 
-            if (userLogeado instanceof Organizador){
-                System.out.println("\n --- Menu Organizador ---");
-                System.out.println("1. Consultar partidos\r\n" + //
-                                        "2. Generar Reportes\r\n" + //
-                                        "3. Salir\r\n" +
-                                        "Seleccione una opcion: ");
-                String eleccion = sc.nextLine();
-                switch (eleccion) {
-                    case "1":
-                        System.out.println("\n---Consultando partidos del sistema---");
-                        userLogeado.consultarEntradas(compras);
-                        break;
-                    case "2":
-                        System.out.println("\n---Generando Reporte de Ventas---");
-                        //Downcasting para llamar al método requerido del Organizador
-                        Organizador org = (Organizador) userLogeado;
-                        org.generarReporte(compras);
-                        this.notificar(org, "El reporte detallado se ha mostrado exitosamente en la consola del sistema ");
-                        break;
-                    case "3":
-                        System.out.println("Saliendo del menú del Organizador...");
-                        mientras = false;
-                        break;
-                
-                    default:
-                        System.out.println("Opción inválida. Por favor, seleccione una opción válida.");
-                        break;
+                if (userLogeado instanceof Organizador) {
+                    System.out.println("\n --- Menu Organizador ---");
+                    System.out.println("1. Consultar partidos\r\n" + //
+                            "2. Generar Reportes\r\n" + //
+                            "3. Salir\r\n" +
+                            "Seleccione una opcion: ");
+                    String eleccion = sc.nextLine();
+                    switch (eleccion) {
+                        case "1":
+                            System.out.println("\n---Consultando partidos del sistema---");
+                            userLogeado.consultarEntradas(compras);
+                            break;
+                        case "2":
+                            System.out.println("\n---Generando Reporte de Ventas---");
+                            // Downcasting para llamar al método requerido del Organizador
+                            Organizador org = (Organizador) userLogeado;
+                            org.generarReporte(compras);
+                            this.notificar(org,
+                                    "El reporte detallado se ha mostrado exitosamente en la consola del sistema ");
+                            break;
+                        case "3":
+                            System.out.println("Saliendo del menú del Organizador...");
+                            mientras = false;
+                            break;
+
+                        default:
+                            System.out.println("Opción inválida. Por favor, seleccione una opción válida.");
+                            break;
+                    }
                 }
             }
         }
@@ -378,7 +379,7 @@ public class Sistema {
 
         System.out.println("\nUsuario autentificado correctamente.");
 
-        // Polimorfismo y Downcasting 
+        // Polimorfismo y Downcasting
         if (usuarioAutenticado instanceof Aficionado) {
             System.out.println("Rol detectado: AFICIONADO\n");
             Aficionado aficionado = (Aficionado) usuarioAutenticado;
@@ -421,11 +422,11 @@ public class Sistema {
         return null;
     }
 
-    //Método notificar de las entradas para aficionados
+    // Método notificar de las entradas para aficionados
     public void notificar(Aficionado aficionado, Compra compraRealizada) {
         // Se busca el codigo referencial de acuerdo al partido que se compró
         Partido partidoComprado = null;
-        for (Partido p: partidos) {
+        for (Partido p : partidos) {
             if (p.getCodigo().equals(compraRealizada.getCodigoReferencial())) {
                 partidoComprado = p;
                 break;
@@ -440,12 +441,13 @@ public class Sistema {
         System.out.println("Para: " + aficionado.getCorreo());
         System.out.println("Asunto: Compra de entrada realizada");
         System.out.println("Estimado/a " + aficionado.getNombres() + " " + aficionado.getApellidos() + ",");
-        System.out.println("Su compra ha sido registrada exitosamente con el código " + compraRealizada.getCodigoCompra() + " el dia " + sdf.format(compraRealizada.getFechaCompra()) + ".");
-        
+        System.out.println("Su compra ha sido registrada exitosamente con el código "
+                + compraRealizada.getCodigoCompra() + " el dia " + sdf.format(compraRealizada.getFechaCompra()) + ".");
+
         if (partidoComprado != null) {
             System.out.println("Partido: " + partidoComprado.getLocal() + " vs " + partidoComprado.getVisitante());
-            System.out.println("Código del partido :" +  partidoComprado.getCodigo());
-        } 
+            System.out.println("Código del partido :" + partidoComprado.getCodigo());
+        }
 
         System.out.println("Cantidad: " + compraRealizada.getCantidad());
         System.out.println("Valor Pagado: $" + compraRealizada.getValorPagado());
@@ -456,15 +458,15 @@ public class Sistema {
     public void notificar(Aficionado aficionado, Compra compraRealizada, Kit kitAdquirido) {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
-        //Mostrar Mensaje
+        // Mostrar Mensaje
         System.out.println("\n--- ENVIANDO NOTIFICIACIÓN ---");
         System.out.println("De correoSistema");
         System.out.println("Para: " + aficionado.getCorreo());
         System.out.println("Asunto: Compra de kit realizada");
         System.out.println("Estimado/a " + aficionado.getNombres() + " " + aficionado.getApellidos() + ",");
-        System.out.println("Su compra ha sido registrada exitosamente con el código " + compraRealizada.getCodigoCompra() + " el dia " + sdf.format(compraRealizada.getFechaCompra()) + ".");
-        
-        
+        System.out.println("Su compra ha sido registrada exitosamente con el código "
+                + compraRealizada.getCodigoCompra() + " el dia " + sdf.format(compraRealizada.getFechaCompra()) + ".");
+
         System.out.println("Kit adquirido: " + kitAdquirido.getNombre());
         System.out.println("Código del kit: " + kitAdquirido.getCodigo());
         System.out.println("Cantidad de kits: " + compraRealizada.getCantidad());

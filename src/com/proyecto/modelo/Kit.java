@@ -61,7 +61,7 @@ public class Kit {
             p = p + "\n- " + partido.getLocal() + " vs " + partido.getVisitante();  
 
         }
-        return nombre + '\n' + "Incluye:\n" + p + "\n\nPrecio: " + precio + "\nDisponibles: " + disponibles ;
+        return "Código: " + codigo + '\n' + nombre + '\n' + "Incluye:\n" + p + "\n\nPrecio: " + precio + "\nDisponibles: " + disponibles ;
 
     }
 
