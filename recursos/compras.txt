@@ -1,1 +1,2 @@
 CodigoCompra|Tipo|CodigoReferencial|FechaCompra|Cantidad|ValorPagado|CodigoAficionado
+1|Entrada|M024|2026-07-13|2|90.0|A001
