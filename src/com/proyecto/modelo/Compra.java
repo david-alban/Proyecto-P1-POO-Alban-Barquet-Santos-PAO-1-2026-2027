@@ -10,7 +10,7 @@ import java.util.Date;
  */
 public class Compra {
     /** 
-     * Código único de la compra generada.
+     *  Variables de de la compra generada.
     */
     private int codigoCompra;
     private String tipo;

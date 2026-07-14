@@ -4,8 +4,14 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.text.ParseException;
 
+/**
+ * Representa un partido disponible en el sistema. 
+ */
 public class Partido {
 
+    /**
+     * Variables de la clase partido.
+     */
     private String codigo;
     private String local;
     private String visitante;
@@ -18,7 +24,20 @@ public class Partido {
     private int stockVIP;
     private String fase;
 
-    // Constructor del método Partido
+    /**
+     * Crea un nuevo  partido con todos los atributos detallados.
+     * @param codigo
+     * @param local
+     * @param visitante
+     * @param fecha
+     * @param estadio
+     * @param ciudad
+     * @param capacidad
+     * @param stockGeneral
+     * @param StockPreferencial
+     * @param StockVIP
+     * @param fase
+     */
     public Partido(String codigo, String local, String visitante, Date fecha, String estadio, String ciudad,
             int capacidad, int stockGeneral, int StockPreferencial, int StockVIP, String fase) {
         this.codigo = codigo;
@@ -34,7 +53,10 @@ public class Partido {
         this.fase = fase;
     }
 
-    // Método para calcular el precio con respecto a la fase del partido
+    /**
+     * Calcula el precio de la entrada en la zona general dependiendo a la fase.
+     * @return Precio de la entrada general
+     */
     public double getPrecioGeneral() {
         if (fase.equalsIgnoreCase("Octavos de final"))
             return 60.0;
@@ -47,6 +69,10 @@ public class Partido {
         return 45.0; // Precio base para otras fases
     }
 
+    /**
+     * Calcula el precio de la entrada en la zona preferencial dependiendo a la fase.
+     * @return Precio de la entrada preferencial.
+     */
     public double getPrecioPreferencial() {
         if (fase.equalsIgnoreCase("Octavos de final"))
             return 100.0;
@@ -59,6 +85,10 @@ public class Partido {
         return 85.0; // Precio base para otras fases
     }
 
+    /**
+     * Calcula el precio de la entrada en la zona VIP dependiendo a la fase.
+     * @return Precio de la entrada VIP.
+     */
     public double getPrecioVIP() {
         if (fase.equalsIgnoreCase("Octavos de final"))
             return 180.0;
@@ -71,7 +101,12 @@ public class Partido {
         return 45.0; // Precio base para otras fases
     }
 
-    // Constructor del método Partido a partir de una línea de texto
+    /**
+     * Crea un nuevo partido a partir de la linea de texto
+     * Carga información contenida en los archivos .txt.
+     * @param linea Linea de Cadena de texto.
+     * @throws ParseException Si ocurre un error convertir el formato de la fecha.
+     */
     public Partido(String linea) throws ParseException {
         String[] datos = linea.split("\\|");
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -90,7 +125,11 @@ public class Partido {
         this.fase = datos[10];
     }
 
-    // Método toString para mostrar la información del partido
+    /** 
+     * Devuelve una cadena de texto con la información detallada.
+     * @return Texto con las variables
+    */
+
     @Override
     public String toString() {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -105,7 +144,11 @@ public class Partido {
                 "Precios:  General: " + getPrecioGeneral() + " | Preferencial: " + getPrecioPreferencial() + " | VIP: " + getPrecioVIP();
     }
 
-    // Getters/Setters
+    /**
+     * Setters y Getters
+     * @return
+     */
+    
     public String getCodigo() {
         return codigo;
     }
