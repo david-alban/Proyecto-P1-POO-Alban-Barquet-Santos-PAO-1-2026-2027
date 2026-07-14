@@ -2,8 +2,14 @@ package com.proyecto.modelo;
 
 import java.util.ArrayList;
 
-public class Kit {
+/**
+ * Clase que representa un Kit de partidos deportivos.
+ */
 
+public class Kit {
+    /**
+     * Código único del kit.
+     */
     private String codigo;
     private String nombre;
     private String descripcion;
@@ -11,7 +17,16 @@ public class Kit {
     private int disponibles;
     private ArrayList<Partido> partidos;
 
-    //Constructor del método Kit
+    /**
+     * Constructor de la clase Kit (Crea un nuevo kit con todos sus atributos).
+     * @param codigo
+     * @param nombre
+     * @param descripcion
+     * @param precio
+     * @param disponibles
+     * @param partidos
+     */
+
     public Kit(String codigo, String nombre, String descripcion, double precio, int disponibles,
             ArrayList<Partido> partidos) {
 
@@ -23,12 +38,20 @@ public class Kit {
         this.partidos = partidos;
     }
 
-    // Método para agregar un partido al kit
+    /**
+     * Método para agregar un partido al kit.
+     * @param p
+     */
+
     public void agregarPartido(Partido p) {
         this.partidos.add(p);
     }
-    
-    // Constructor del método Kit a partir de una línea de texto
+
+    /**
+     * Constructor de la clase Kit (Crea un nuevo kit a partir de una línea de texto).
+     * @param linea
+     */    
+
     public Kit(String linea) {
         String[] datos =  linea.split("\\|");
         this.codigo = datos[0];
@@ -38,6 +61,11 @@ public class Kit {
         this.precio = Double.valueOf(datos[4]);
         this.disponibles = Integer.valueOf(datos[5]);
     }
+    /**
+     * Constructor de la clase Kit (Asocia los objetos Partido correspondiente).
+     * @param linea
+     * @param partidos Lista general de partidos disponibles.
+     */
 
     public Kit(String linea, ArrayList<Partido> partidos){
         this(linea);
@@ -53,7 +81,11 @@ public class Kit {
 
     }
 
-    // Método toString para mostrar la información del Kit
+    /**
+     * Devuelve una representación en texto con la información del kit.
+     * @return Cadena de texto con codigo.
+     */
+
     @Override   
     public String toString() {
         String p = "";
@@ -64,7 +96,12 @@ public class Kit {
         return "Código: " + codigo + '\n' + nombre + '\n' + "Incluye:\n" + p + "\n\nPrecio: " + precio + "\nDisponibles: " + disponibles ;
 
     }
-
+    
+    /**
+     * Setters y Getters
+     * @return
+     */
+    
     public String getCodigo() {return codigo;}
     public void setCodigo(String codigo) {this.codigo = codigo;}
 
