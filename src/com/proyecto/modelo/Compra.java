@@ -4,7 +4,14 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+/**
+ * Representa una compra realizada en el sistema.
+ * Corresponde a una entrada o un kit.
+ */
 public class Compra {
+    /** 
+     * Código único de la compra generada.
+    */
     private int codigoCompra;
     private String tipo;
     private String codigoReferencial;
@@ -15,7 +22,13 @@ public class Compra {
 
     public static int nextCodigo = 1;
 
-    // Constructor Compra que recibe un string
+    /**
+     * Crea una instancia Compra a partir de una linea de texto.
+     * Necesaria para cargar los registros previamente almacenados.
+     * @param linea Cadena de texto con los datos de la compra.
+     * @throws ParseException Necesario si ocurre un error al convertir la fecha desde el texto.
+     */
+
     public Compra(String linea) throws ParseException {
         String[] datos = linea.split("\\|");
         this.codigoCompra = Integer.parseInt(datos[0]);
@@ -28,7 +41,17 @@ public class Compra {
         this.codigoAficionado = datos[6];
     }
 
-    // Constructor del método Compra
+    /**
+     * Crea una nueva compra.
+     * Asigna la fecha correspondiente (Actual) y un código único (Secuencial)
+     * 
+     * @param tipo Tipo Entrada o kit 
+     * @param codigoReferencial Código del artículo.
+     * @param cantidad Unidades adquiridas.
+     * @param valorPagado Total a pagar.
+     * @param codigoAficionado Código que efectúa la compra.
+     */
+
     public Compra(String tipo, String codigoReferencial, int cantidad, double valorPagado, String codigoAficionado) {
         this.tipo = tipo;
         this.codigoReferencial = codigoReferencial;
@@ -40,7 +63,11 @@ public class Compra {
         nextCodigo++;
     }
 
-    // Getters/Setters
+    /**
+     * Setters y Getters
+     * @return
+     */
+
     public int getCodigoCompra() {
         return codigoCompra;
     }
@@ -97,6 +124,11 @@ public class Compra {
         this.codigoAficionado = codigoAficionado;
     }
 
+    /** 
+     * Devuelve una cadena de texto.
+     * @return Representaación en texto de la Información de la compra
+    */
+   
     @Override
     public String toString() {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
