@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 public class Kit {
     /**
-     * Código único del kit.
+     * Variables del kit generado.
      */
     private String codigo;
     private String nombre;
@@ -40,7 +40,7 @@ public class Kit {
 
     /**
      * Método para agregar un partido al kit.
-     * @param p
+     * @param p Partido a agregar.
      */
 
     public void agregarPartido(Partido p) {
@@ -49,7 +49,7 @@ public class Kit {
 
     /**
      * Constructor de la clase Kit (Crea un nuevo kit a partir de una línea de texto).
-     * @param linea
+     * @param linea Linea de texto con los datos del kit.
      */    
 
     public Kit(String linea) {
@@ -63,7 +63,7 @@ public class Kit {
     }
     /**
      * Constructor de la clase Kit (Asocia los objetos Partido correspondiente).
-     * @param linea
+     * @param linea Linea de texto con los datos del kit.
      * @param partidos Lista general de partidos disponibles.
      */
 

@@ -52,7 +52,7 @@ public class Organizador extends Usuario {
     }
 
     /**
-     * Constructor  ue recibe dos Strings extraídos de los archivos usuarios.txt y organizadores.txt
+     * Constructor que recibe dos Strings extraídos de los archivos usuarios.txt y organizadores.txt
      * @param lineaUsuario Linea extraída con datos separados por '|' con información de atributos de usuario.
      * @param lineaOrganizador Linea extraída con datos separados por '|' con información de atributos de organizador.
      */
