@@ -330,23 +330,27 @@ public class Sistema {
                 String eleccion = sc.nextLine();
                 switch (eleccion) {
                     case "1":
-                        System.out.println();
+                        System.out.println("\n---Consultando las entradas del sistema---");
+                        userLogeado.consultarEntradas(compras);
                         break;
                     case "2":
-                        
+                        System.out.println("\n---Generando Reporte de Ventas---");
+                        //Downcasting para llamar al método requerido del Organizador
+                        Organizador org = (Organizador) userLogeado;
+                        org.generarReporte(compras);
+                        this.notificar(org, "El reporte detallado se ha mostrado exitosamente en la consola del sistema ");
                         break;
                     case "3":
-                        
+                        System.out.println("Saliendo del menú del Organizador...");
+                        mientras = false;
                         break;
                 
                     default:
+                        System.out.println("Opción inválida. Por favor, seleccione una opción válida.");
                         break;
                 }
             }
         }
-            
-        
-
     }
 
     public Usuario iniciarSesion() {
