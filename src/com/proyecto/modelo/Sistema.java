@@ -168,8 +168,7 @@ public class Sistema {
         while (mientras){
             if (userLogeado instanceof Aficionado){
                 System.out.println("\n --- Menu Aficionado ---");
-                System.out.println("Los AFICIONADOS tienen el menú de opciones:\r\n" + //
-                                        "1. Consultar partidos\r\n" + //
+                System.out.println("1. Consultar partidos\r\n" + //
                                         "2. Comprar entrada\r\n" + //
                                         "3. Comprar kit de entradas\r\n" + //
                                         "4. Consultar entradas\r\n" + //
@@ -323,7 +322,26 @@ public class Sistema {
                 }
             } 
             if (userLogeado instanceof Organizador){
+                System.out.println("\n --- Menu Organizador ---");
+                System.out.println("1. Consultar partidos\r\n" + //
+                                        "2. Generar Reportes\r\n" + //
+                                        "3. Salir\r\n" +
+                                        "Seleccione una opcion: ");
+                String eleccion = sc.nextLine();
+                switch (eleccion) {
+                    case "1":
+                        System.out.println();
+                        break;
+                    case "2":
+                        
+                        break;
+                    case "3":
+                        
+                        break;
                 
+                    default:
+                        break;
+                }
             }
         }
             
