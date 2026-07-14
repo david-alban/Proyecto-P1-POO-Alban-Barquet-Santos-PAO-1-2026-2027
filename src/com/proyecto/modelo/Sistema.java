@@ -330,7 +330,7 @@ public class Sistema {
                 String eleccion = sc.nextLine();
                 switch (eleccion) {
                     case "1":
-                        System.out.println("\n---Consultando las entradas del sistema---");
+                        System.out.println("\n---Consultando partidos del sistema---");
                         userLogeado.consultarEntradas(compras);
                         break;
                     case "2":
