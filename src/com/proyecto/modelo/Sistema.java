@@ -151,13 +151,12 @@ public class Sistema {
 
     public void mostrarMenu() {
         Scanner sc = new Scanner(System.in);
-
         this.cargarUsuario();
         this.cargarCompras();
         this.cargarPartidos();
         this.cargarKits();
         while (true) {
-            Usuario userLogeado = this.iniciarSesion();
+            Usuario userLogeado = this.iniciarSesion(sc);
 
             if (userLogeado == null) {
                 return;
@@ -251,7 +250,7 @@ public class Sistema {
 
                             // 6 ingresar numero de tarjeta
                             System.out.println("Ingrese el numero de su tarjeta: ");
-                            String tarjeta = sc.nextLine();
+                            sc.nextLine();
 
                             // 7 simular pago exitoso
                             System.out.println("Procesando pago");
@@ -299,7 +298,7 @@ public class Sistema {
                             System.out.println("Total a pagar: " + nuevaCompraKit.getValorPagado());
 
                             System.out.println("Ingrese el numero de su tarjeta");
-                            String tarjetaKit = sc.nextLine();
+                            sc.nextLine();
 
                             System.out.println("Procesando pago...");
                             System.out.println("pago exitoso");
@@ -354,8 +353,7 @@ public class Sistema {
         }
     }
 
-    public Usuario iniciarSesion() {
-        Scanner sc = new Scanner(System.in);
+    public Usuario iniciarSesion(Scanner sc) {
 
         System.out.println("\n=== INICIAR SESIÓN ===");
         System.out.print("Usuario: ");
