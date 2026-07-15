@@ -238,7 +238,7 @@ public class Sistema {
 
                             // 1 Ingresar código
 
-                            String codePartido = sc.nextLine();
+                            String codePartido = sc.nextLine().toUpperCase();
 
                             Partido pSeleccionado = null;
                             for (Partido p : partidos) {
@@ -323,7 +323,7 @@ public class Sistema {
                             userLogeado.consultarKits(kits);
 
                             System.out.println("Ingrese el codigo del kit que desea comprar: ");
-                            String codeKit = sc.nextLine();
+                            String codeKit = sc.nextLine().toUpperCase();
 
                             Kit kitSeleccionado = null;
 
