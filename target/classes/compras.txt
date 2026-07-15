@@ -2,3 +2,4 @@ CodigoCompra|Tipo|CodigoReferencial|FechaCompra|Cantidad|ValorPagado|CodigoAfici
 1|Kit|K003|2026-07-14|3|900.0|A001
 2|Entrada|M002|2026-07-14|3|135.0|A001
 3|Entrada|M005|2026-07-14|7|315.0|A001
+4|Entrada|M022|2026-07-14|4|180.0|A001
