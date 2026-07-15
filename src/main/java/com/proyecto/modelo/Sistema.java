@@ -163,7 +163,7 @@ public class Sistema {
         String linea = compra.getCodigoCompra() + "|" + compra.getTipo() + '|' + compra.getCodigoReferencial() + '|'
                 + fechaFormateada + '|' + compra.getCantidad() + '|' + compra.getValorPagado() + '|'
                 + compra.getCodigoAficionado();
-        ManejoArchivos.EscribirArchivo("recursos/compras.txt", linea);
+        ManejoArchivos.EscribirArchivo("src/main/resources/compras.txt", linea);
         compras.add(compra);
     }
 

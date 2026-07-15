@@ -39,7 +39,7 @@ public class Compra {
         this.cantidad = Integer.valueOf(datos[4]);
         this.valorPagado = Double.valueOf(datos[5]);
         this.codigoAficionado = datos[6];
-        nextCodigo++;
+        nextCodigo ++;
     }
 
     /**
