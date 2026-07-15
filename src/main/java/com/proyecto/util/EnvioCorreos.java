@@ -10,13 +10,18 @@ import java.util.Properties;
 
 public class EnvioCorreos{
 
-    // Las variables que el video usaba en el JFrame, ahora como parámetros fijos
-    private static final String emailFrom = "padilladavidjosue15@gmail.com"; // Tu correo emisor
-    private static final String passwordFrom = "fnrinmhmfwluqqxf"; // Tu contraseña de aplicación
+    /**
+     * 
+     * Las variables empleadas en el Jframe, ahora como parámetros fijos
+     */
+    private static final String emailFrom = "padilladavidjosue15@gmail.com"; //COrreo emisor
+    private static final String passwordFrom = "fnrinmhmfwluqqxf"; //Contraseña de aplicación
 
     public static void enviarCorreoReal(String destinatario, String asunto, String contenido) {
         
-        // 1. Configurar las propiedades (Exactamente igual al video, pero adaptado)
+        /**
+         * Configurar las propiedades
+         */
         Properties mProperties = new Properties();
         mProperties.put("mail.smtp.host", "smtp.gmail.com");
         mProperties.put("mail.smtp.ssl.trust", "smtp.gmail.com");
@@ -26,20 +31,28 @@ public class EnvioCorreos{
         mProperties.setProperty("mail.smtp.ssl.protocols", "TLSv1.2");
         mProperties.setProperty("mail.smtp.auth", "true");
 
-        // 2. Crear la sesión utilizando la API de Jakarta
+        /**
+         * Crear la sesión utilizando la API de Jakarta
+         */
         Session mSession = Session.getInstance(mProperties);
 
         try {
-            // 3. Crear el contenedor del correo electrónico
+            /** 
+             * Crear el contenedor del correo electrónico 
+             */ 
             MimeMessage mCorreo = new MimeMessage(mSession);
             mCorreo.setFrom(new InternetAddress(emailFrom));
             mCorreo.setRecipient(Message.RecipientType.TO, new InternetAddress(destinatario));
             mCorreo.setSubject(asunto);
             
-            // "html" indica que puedes meter etiquetas HTML en el texto si quieres
+            /**
+             * "html" indica que puedes meter etiquetas HTML en el texto si quieres
+             */
             mCorreo.setContent(contenido, "text/html; charset=utf-8"); 
 
-            // 4. Conectarse al servidor y enviar (La lógica de transporte del video)
+            /**
+             * Conectarse al servidor y enviar
+             */
             Transport mTransport = mSession.getTransport("smtp");
             mTransport.connect(emailFrom, passwordFrom);
             mTransport.sendMessage(mCorreo, mCorreo.getRecipients(Message.RecipientType.TO));
@@ -49,7 +62,7 @@ public class EnvioCorreos{
 
         } catch (MessagingException ex) {
             System.out.println("[Error] Falló el envío del correo electrónico.");
-            ex.printStackTrace(); // Esto te dirá detalladamente si falla la contraseña o la conexión
+            ex.printStackTrace(); 
         }
     }
 }

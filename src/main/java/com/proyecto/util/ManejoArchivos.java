@@ -9,7 +9,21 @@ import java.io.FileWriter;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 
+/**
+ * Clase utilitaria para el manejo y persistencia de datos en archivos de texto.
+ * Proporciona métodos estáticos para leer, escribir y verificar la existencia de archivos,
+ * aplicando el principio de abstracción en el sistema.
+ */
+
 public class ManejoArchivos {
+    /**
+     * Lee un archivo de texto y devuelve su contenido línea por línea.
+     * Este método omite automáticamente la primera línea del archivo, asumiendo que es el encabezado.
+     *
+     * @param nombrearchivo Nombre o ruta del archivo de texto a leer.
+     * @return Una lista de tipo ArrayList con las líneas leídas del archivo, excluyendo el encabezado.
+     */
+
     public static ArrayList<String> LeeFichero(String nombrearchivo) {
         ArrayList<String> lineas = new ArrayList<>();
         File archivo = null;
@@ -46,6 +60,14 @@ public class ManejoArchivos {
 
     }
 
+    /**
+     * Escribe o añade una nueva línea de texto al final de un archivo especificado.
+     * Si el archivo no existe, lo crea. Si ya existe, añade la información sin borrar el contenido anterior.
+     *
+     * @param nombreArchivo Nombre o ruta del archivo de texto donde se va a escribir.
+     * @param linea Cadena de texto que se agregará al archivo.
+     */
+
     public static void EscribirArchivo(String nombreArchivo, String linea) {
 
         FileWriter fichero = null;
@@ -69,6 +91,13 @@ public class ManejoArchivos {
             }
         }
     }
+
+    /**
+     * Verifica si un archivo de texto existe en la ruta especificada.
+     *
+     * @param nombreArchivo Nombre o ruta del archivo a verificar.
+     * @return true si el archivo existe; false en caso contrario.
+     */
 
     public static boolean existeArchivo(String nombreArchivo) {
         File archivo = new File(nombreArchivo);
