@@ -91,10 +91,10 @@ public class Aficionado extends Usuario {
     public Compra comprar(Partido p, Zona zona, int cantidad){
         Double precio = 0.0;
         switch (zona) {
-            case Zona.VIP:
+            case VIP:
                 precio = p.getPrecioVIP() * cantidad;
                 break;
-            case Zona.Preferencial:
+            case Preferencial:
                 precio = p.getPrecioPreferencial() * cantidad;
                 break;
             default:
